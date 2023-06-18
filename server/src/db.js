@@ -4,8 +4,8 @@ const CountryModel = require('./models/Country')
 const ActivityModel = require('./models/Activity')
 const axios = require('axios');
 
-const fs = require('fs');
-const path = require('path');
+// const fs = require('fs');
+// const path = require('path');
 const {  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
 const sequelize = new Sequelize(
@@ -33,33 +33,7 @@ const sequelize = new Sequelize(
 // let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 // sequelize.models = Object.fromEntries(capsEntries);
 
-const getCountries = async(req, res) => { 
 
-try {
-  const allCountries = await axios.get('http://localhost:5000/countries');
-  console.log(allCountries)
-  const data = allCountries.data;
-  const countries = data.map((date) => { 
-  const { cca3, name, flags, region, capital, subregion, area, population } = date
-    return {
-      id: cca3,
-      name, 
-      flags: flags != null ? flags[0] : flags == 'No data',
-      region,
-      capital: capital != null ? capital[0] : capital == 'No data',
-      subregion,
-      area,
-      population
-    }
-   })
-
-   
-} catch (error) {
-  
-}
-}
-
-getCountries();
 
 CountryModel(sequelize);
 ActivityModel(sequelize);
@@ -70,6 +44,44 @@ const { Country, Activity } = sequelize.models;
 // Product.hasMany(Reviews);
 Country.belongsToMany(Activity, {through: "CountryActivity"});
 Activity.belongsToMany(Country, {through: "CountryActivity"});
+
+
+
+const getCountries = async(req, res) => { 
+  const countries = [];
+  try {
+    const allCountries = await axios.get('http://localhost:5000/countries');  
+    const data = allCountries.data;
+    data.map((date) => { 
+    const { fifa, name, flags, region, capital, subregion, area, population } = date
+      const newCountry ={
+        id: fifa,
+        name: name.common,
+        flags: flags.png,
+        region,
+        capital: capital[0],
+        subregion,
+        area,
+        population
+      }
+    countries.push(newCountry)
+    
+    Country.bulkCreate(countries)
+    .then (() => { console.log('La DB fue Cargada Exitosamente') })
+    .catch ((error) => { console.log(error.message,' ubication see') })
+    });
+
+    
+    // const dataB = await Country.findOrCreate({where : {  cca3, name, flags, region, capital, subregion, area, population }});
+    //  res.json(dataB);  
+     
+  } catch (error) {
+    (error.message)
+  }
+  }
+  
+  getCountries();
+
 
 module.exports = {
   ...sequelize.models, 
