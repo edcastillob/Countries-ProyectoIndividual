@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, DATEONLY } = require('sequelize');
 
 // module.exports = (sequelize) => {
 const Country = (sequelize) => {
@@ -7,17 +7,16 @@ const Country = (sequelize) => {
     id:{
       type: DataTypes.STRING(3),
       allowNull: false,      
-      primaryKey: true,
+      primaryKey: true,  
+      
     },
     name:{
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
     },
     flags:{
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
     },
     region:{
       type: DataTypes.STRING,
@@ -25,7 +24,7 @@ const Country = (sequelize) => {
     },
     capital:{
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     subregion:{
       type: DataTypes.STRING,
@@ -33,7 +32,7 @@ const Country = (sequelize) => {
     },
     area:{
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     population:{
       type: DataTypes.INTEGER,
