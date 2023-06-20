@@ -47,8 +47,11 @@ router.post('/activities', async(req, res) => {
     const { name, difficulty, duration, season, countries } = req.body;
 
 	try {
-		const searchActivity = await Activity.findOne({where: {name: name} });
-        if(!searchActivity){
+      
+		const searchActivity = await Activity.findOne({where: { name: name }});      
+      
+        
+        if(!searchActivity ){
             const newActivity = await Activity.create({ name, difficulty, duration, season });
             await newActivity.addCountry(countries);		
             return res.status(200).send(`activity ${name} has been created`);
@@ -59,6 +62,15 @@ router.post('/activities', async(req, res) => {
 	}
 })
 
-
+router.get('/activities', async(req, res) => {  
+    
+    try {   
+        let searchActivity = await Activity.findAll();        
+        if(searchActivity.length > 0) return res.status(200).json({searchActivity});      
+        return res.status(404).json({message: 'Activity not found'}) 
+    } catch (error) {
+        return res.status(404).json({message: error}) 
+    }
+})
 
 module.exports = router;
