@@ -1,6 +1,5 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
-const { Country, Activity } = sequelize.models;
 const CountryModel = require('./models/Country')
 const ActivityModel = require('./models/Activity')
 
@@ -17,6 +16,7 @@ const sequelize = new Sequelize(
 CountryModel(sequelize);
 ActivityModel(sequelize);
 
+const { Country, Activity } = sequelize.models;
 
 Country.belongsToMany(Activity, {through: "CountryActivity"});
 Activity.belongsToMany(Country, {through: "CountryActivity"});

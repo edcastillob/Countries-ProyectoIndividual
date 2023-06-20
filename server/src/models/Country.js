@@ -14,6 +14,10 @@ const Country = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    nameOfficial:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     flags:{
       type: DataTypes.STRING,
       allowNull: false,
@@ -37,7 +41,11 @@ const Country = (sequelize) => {
     population:{
       type: DataTypes.INTEGER,
       allowNull: false,
-    }
+    },
+    maps:{
+      type: DataTypes.STRING,
+      allowNull: false
+    },
   }, {
      timestamps: false
   });
