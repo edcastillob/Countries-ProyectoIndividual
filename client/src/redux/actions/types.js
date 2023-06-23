@@ -1,0 +1,4 @@
+
+
+    export const SHOW_COUNTRIES = 'SHOW_COUNTRIES';
+    export const SEARCH_COUNTRIES_NAME = 'SEARCH_COUNTRIES_NAME';
