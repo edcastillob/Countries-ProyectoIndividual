@@ -1,29 +1,46 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { showCountries } from "../../redux/actions/actions";
 
 
 export const FormActivities = () => {
     const dispatch = useDispatch();
-    const countriesState = useSelector((state)=> state.countries);
-        
+    const countriesState = useSelector((state)=> state.countries);        
     useEffect(() => {dispatch(showCountries())}, [])
-
     countriesState.sort((x,y) => x.name.localeCompare(y.name));
        
-console.log(countriesState)
+    const [activityData, setActivityData] = useState({
+      name: '',
+      difficulty: '', 
+      duration: '', 
+      season: '', 
+      countries: '',
+    })
+
+    const handleChange = (event) => { 
+        setActivityData({
+          ...activityData,
+          [event.target.name]: event.target.value
+        })
+     }
+
+     const handleSubmit = (event) => { 
+        event.preventDefault();
+        FormActivities(activityData)
+     }
+
   return (
-    <form>
+    <form onSubmit = { handleSubmit }>
 
         <label htmlFor='name'>Actividad:</label>
         <input 
         type='text' 
-        name='actividad'
-        // value=''
-        // onChange=''
+        name='name'
+        value = { activityData.name }
+        onChange = { handleChange }
         />
 
-        <select >
+        <select name='difficulty' id="difficulty" value = { activityData.difficulty } onChange = { handleChange }>
           <option value=''>- Dificultad -</option>
           <option value='1'>1</option>
           <option value='2'>2</option>
@@ -35,12 +52,12 @@ console.log(countriesState)
         <label htmlFor='duracion'>Duracion:</label>
         <input 
         type='number' 
-        name='duracion'
-        // value=''
-        // onChange=''
+        name='duration'
+        value = { activityData.duration }
+        onChange = { handleChange }
         />
 
-        <select>
+        <select name='season' id='season' value = { activityData.season } onChange = { handleChange }>
           <option value=''>- Temporada -</option>
           <option value='Invierno'>Invierno</option>
           <option value='Otoño'>Otoño</option>
@@ -51,7 +68,7 @@ console.log(countriesState)
                 
       <div>
         <div>
-          <select name='pais' id="">
+          <select name='countries' id='countries' value = { activityData.countries } onChange = { handleChange }>
             {
               countriesState.sort()?.map( country => (
                 <option key = {country.id} value = {country.id}>{country.name}</option>
@@ -59,12 +76,8 @@ console.log(countriesState)
             }
           </select>
         </div>
-      </div>
-
-       
-     
-    
-
+      </div> 
+      <button type='submit'>Cargar Actividad</button> 
     </form>
   )
 }
