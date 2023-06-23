@@ -19,6 +19,7 @@ export const Countries = () => {
         countriesState?.map( country => (
           <Country
             key = { country.id }
+            id={country.id}
             name = {country.name}
             flags = {country.flags}
             region = {country.region}

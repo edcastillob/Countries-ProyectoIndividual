@@ -1,7 +1,8 @@
-import { SEARCH_COUNTRIES_NAME, SHOW_COUNTRIES } from "../actions/types";
+import { SEARCH_COUNTRIES_NAME, SHOW_COUNTRIES, SEARCH_COUNTRIES_ID } from "../actions/types";
 
 const initialState = {
     countries: [],
+    countryDetail:[],
 
 }
 
@@ -16,6 +17,11 @@ const reducer = ( state = initialState, actions ) => {
             return{
                 ...state,
                 countries: actions.payload,
+            }
+        case SEARCH_COUNTRIES_ID:
+            return{
+                ...state,
+                countryDetail:[ actions.payload],
             }
         default: 
             return { ...state }

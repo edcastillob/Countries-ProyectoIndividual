@@ -1,15 +1,19 @@
-// import { showCountries } from ('../../redux/actions/actions');
+import { NavLink } from 'react-router-dom';
 
 
 
 export const Country = ({id, name, flags, region}) => {
 
   return (
-    <div>        
-            <h2>{ id }</h2>
-            <h2>{ name }</h2>
+    <div>   
+           
+            <h2>{ name }</h2>            
+            <NavLink title='Detail Country' to={`/detail/${id}`}>
             <img src={ flags } alt={ name } />
+            </NavLink>     
             <h3>{ region }</h3>
+            
+            
         
     </div>
   )
