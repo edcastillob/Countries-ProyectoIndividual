@@ -1,6 +1,6 @@
 import { NavLink, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { searchCountryID } from "../redux/actions/actions";
+import { searchCountryID } from "../../redux/actions/actions";
 import { useEffect } from 'react';
 
 

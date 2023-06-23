@@ -14,7 +14,7 @@ const Activity = (sequelize) => {
       allowNull: false,     
     },
     difficulty:{
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate:{ min: 1, max: 5 }
       
