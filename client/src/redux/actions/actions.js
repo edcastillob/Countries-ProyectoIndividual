@@ -21,7 +21,8 @@ export const searchCountryName = (name) => {
     try {
         return async(dispatch) => { 
             const { data } = await axios.get(`${ENDPOINT}?name=${name}`);
-                return dispatch({ type: SEARCH_COUNTRIES_NAME, payload: data.searchCountry })
+            console.log(data)
+                return dispatch({ type: SEARCH_COUNTRIES_NAME, payload: data.searchCountries })
         };
     } catch (error) {
         return (error.message)

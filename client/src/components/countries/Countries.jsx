@@ -12,7 +12,7 @@ export const Countries = () => {
       
     }, [])
 
-    console.log('Desde effect', countriesState)
+    // console.log('Desde effect', countriesState)
   return (
     <div>
        {        
