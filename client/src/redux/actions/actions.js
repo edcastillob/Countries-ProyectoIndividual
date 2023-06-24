@@ -1,6 +1,7 @@
 
-import { SHOW_COUNTRIES, SEARCH_COUNTRIES_NAME, SEARCH_COUNTRIES_ID } from "./types";
-import { ENDPOINT } from '../../endpoint/ENDPOINT';
+import { SHOW_COUNTRIES, SEARCH_COUNTRIES_NAME, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA } from "./types";
+import { ENDPOINT, ENDPOINT2 } from '../../endpoint/ENDPOINT';
+
 import axios from 'axios';
 
 
@@ -39,3 +40,46 @@ export const searchCountryID = (id) => {
         return (error.message)
     }
 };
+
+// export const postActivityData = (payload) => { 
+//     console.log('llegue a post con esto: ', payload)
+//     return async(dispatch) => { 
+//     try {
+//         const response = await fetch(`${ENDPOINT2}/`, {
+//             method: "POST",
+//             headers: {
+//               "Content-Type": "Application/json",
+//             },
+//             body: JSON.stringify(payload),
+//           })
+//           const content = await response.json();
+//     setMsg(
+//       content.msg === 1
+//         ? {
+//             message: "Se ha creado el producto correctamente",
+//             color: "success",
+//             visible: "si",
+//           }
+//         : {
+//             message: "No se ha podido crear el producto",
+//             color: "danger",
+//             visible: "si",
+//           }
+//     );
+//         }
+//      catch (error) {
+//         return (error.message)
+//     }
+//  }
+// }
+export const postActivityData = (payload) => { 
+    console.log('llegue a post con esto: ', payload)
+    return async(dispatch) => { 
+    try { await axios.post(`${ENDPOINT2}/`, payload);         
+                return  dispatch({ type: POST_ACTIVITY_DATA, payload: payload})
+        }
+     catch (error) {
+        return (error.message)
+    }
+ }
+}

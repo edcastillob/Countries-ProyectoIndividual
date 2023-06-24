@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from 'react';
-import { showCountries } from "../../redux/actions/actions";
+import { showCountries, postActivityData } from "../../redux/actions/actions";
 
 
 export const FormActivities = () => {
@@ -14,7 +14,7 @@ export const FormActivities = () => {
       difficulty: '', 
       duration: '', 
       season: '', 
-      countries: '',
+      countries: [],
     })
 
     const handleChange = (event) => { 
@@ -25,9 +25,18 @@ export const FormActivities = () => {
      }
 
      const handleSubmit = (event) => { 
-        event.preventDefault();
-        FormActivities(activityData)
-     }
+        event.preventDefault();       
+              
+            dispatch(postActivityData((activityData)));
+            console.log(activityData)
+            // alert('Actividad creada exitosamente');
+            setActivityData({
+              name: '',
+                  difficulty: '',
+                  duration: '',
+                  season: '',
+                  countries: []
+              });}
 
   return (
     <form onSubmit = { handleSubmit }>
@@ -40,7 +49,7 @@ export const FormActivities = () => {
         onChange = { handleChange }
         />
 
-        <select name='difficulty' id="difficulty" value = { activityData.difficulty } onChange = { handleChange }>
+        <select name='difficulty' id="difficulty" onChange = { handleChange }>
           <option value=''>- Dificultad -</option>
           <option value='1'>1</option>
           <option value='2'>2</option>
@@ -57,7 +66,7 @@ export const FormActivities = () => {
         onChange = { handleChange }
         />
 
-        <select name='season' id='season' value = { activityData.season } onChange = { handleChange }>
+        <select name='season' id='season' onChange = { handleChange }>
           <option value=''>- Temporada -</option>
           <option value='Invierno'>Invierno</option>
           <option value='Otoño'>Otoño</option>
@@ -68,7 +77,7 @@ export const FormActivities = () => {
                 
       <div>
         <div>
-          <select name='countries' id='countries' value = { activityData.countries } onChange = { handleChange }>
+          <select name='countries' id='countries' onChange = { handleChange }>
             {
               countriesState.sort()?.map( country => (
                 <option key = {country.id} value = {country.id}>{country.name}</option>

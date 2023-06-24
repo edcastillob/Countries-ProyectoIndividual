@@ -2,7 +2,7 @@ const { Activity } = require('../../db');
 
 const postActivity = async(req, res) => { 
     const { name, difficulty, duration, season, countries } = req.body;
-
+    console.log(req.body)
 	try {
       
 		// const searchActivity = await Activity.findOne({where: { name: name }});      
@@ -15,7 +15,8 @@ const postActivity = async(req, res) => {
         // }
         // return res.status(200).json({ msg: `the activity ${name} already exists` });
 	} catch (error) {
-		return res.status(400).json({ error: "the data is wrong" });
+
+		return res.status(400).json({ error: req.body });
 	}
 
 };
