@@ -2,7 +2,7 @@ const { Activity } = require('../../db');
 
 const postActivity = async(req, res) => { 
     const { name, difficulty, duration, season, countries } = req.body;
-    console.log(req.body)
+     console.log(req.body)
 	try {
       
 		// const searchActivity = await Activity.findOne({where: { name: name }});      
@@ -10,7 +10,13 @@ const postActivity = async(req, res) => {
         
         // if(!searchActivity ){
             const newActivity = await Activity.create({ name, difficulty, duration, season });
-            await newActivity.addCountry(countries);		
+           
+             await countries?.map( element =>  newActivity.addCountry(element)) 
+           
+            
+                
+                                
+            
             return res.status(200).send(`activity ${name} has been created`);
         // }
         // return res.status(200).json({ msg: `the activity ${name} already exists` });

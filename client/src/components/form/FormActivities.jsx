@@ -8,7 +8,8 @@ export const FormActivities = () => {
     const countriesState = useSelector((state)=> state.countries);        
     useEffect(() => {dispatch(showCountries())}, [])
     countriesState.sort((x,y) => x.name.localeCompare(y.name));
-       
+    
+    
     const [activityData, setActivityData] = useState({
       name: '',
       difficulty: '', 
@@ -32,12 +33,20 @@ export const FormActivities = () => {
             // alert('Actividad creada exitosamente');
             setActivityData({
               name: '',
-                  difficulty: '',
+                  difficulty: '- Dificultad -',
                   duration: '',
-                  season: '',
+                  season: '- Temporada -',
                   countries: []
               });}
 
+
+    // const handleAddCountry = (event) => { 
+    //   event.preventDefault();  
+    //   setActivityData({
+    //     ...activityData,
+    //     countries:[  ...countries, event.target.value]
+    //   })
+    // }
   return (
     <form onSubmit = { handleSubmit }>
 
@@ -77,13 +86,14 @@ export const FormActivities = () => {
                 
       <div>
         <div>
-          <select name='countries' id='countries' onChange = { handleChange }>
+          <select name='countries'  id='countries' onChange = { handleChange }>
             {
               countriesState.sort()?.map( country => (
                 <option key = {country.id} value = {country.id}>{country.name}</option>
               ))
             }
           </select>
+          {/* <button onClick={handleAddCountry}>+</button> */}
         </div>
       </div> 
       <button type='submit'>Cargar Actividad</button> 

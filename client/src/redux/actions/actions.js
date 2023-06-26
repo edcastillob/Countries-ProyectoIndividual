@@ -41,37 +41,7 @@ export const searchCountryID = (id) => {
     }
 };
 
-// export const postActivityData = (payload) => { 
-//     console.log('llegue a post con esto: ', payload)
-//     return async(dispatch) => { 
-//     try {
-//         const response = await fetch(`${ENDPOINT2}/`, {
-//             method: "POST",
-//             headers: {
-//               "Content-Type": "Application/json",
-//             },
-//             body: JSON.stringify(payload),
-//           })
-//           const content = await response.json();
-//     setMsg(
-//       content.msg === 1
-//         ? {
-//             message: "Se ha creado el producto correctamente",
-//             color: "success",
-//             visible: "si",
-//           }
-//         : {
-//             message: "No se ha podido crear el producto",
-//             color: "danger",
-//             visible: "si",
-//           }
-//     );
-//         }
-//      catch (error) {
-//         return (error.message)
-//     }
-//  }
-// }
+
 export const postActivityData = (payload) => { 
     console.log('llegue a post con esto: ', payload)
     return async(dispatch) => { 
@@ -83,3 +53,4 @@ export const postActivityData = (payload) => {
     }
  }
 }
+
