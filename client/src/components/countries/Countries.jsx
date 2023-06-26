@@ -2,6 +2,7 @@ import { Country } from '../country/Country';
 import { useSelector, useDispatch } from "react-redux";
 import { showCountries } from "../../redux/actions/actions";
 import { useEffect } from 'react';
+import { Region } from '../filter/region/Region';
 
 export const Countries = () => {
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ export const Countries = () => {
     // console.log('Desde effect', countriesState)
   return (
     <div>
+      <Region />
        {        
         countriesState?.map( country => (
           <Country

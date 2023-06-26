@@ -10,7 +10,6 @@ export const FormActivities = () => {
     countriesState.sort((x,y) => x.name.localeCompare(y.name));
     
     
-    const [countrySelect, setCountrySelect] = useState([]);
     const [activityData, setActivityData] = useState({
       name: '',
       difficulty: '', 
@@ -19,6 +18,8 @@ export const FormActivities = () => {
       countries:[],
     })
     
+    const [countrySelect, setCountrySelect] = useState([]);
+    const [nameCountry, setNameCountry] = useState([]);
 
     const handleChange = (event) => { 
       event.preventDefault();  
@@ -49,22 +50,23 @@ export const FormActivities = () => {
       });
     }, [countrySelect]);
     
-
-      
     
-    
-    
-    const searchName= () => { 
+    useEffect(() => { 
       countrySelect.map((country) => {
         let result = countriesState.find(element =>  element.id === country
      
           );
-          console.log(result.name)
-    return(result.name)
+
+      setNameCountry([...nameCountry, result.name])
   })    
+  }, [countrySelect]);
     
-  }
-   searchName();
+    
+ 
+   
+  
+
+   
      
   return (
     <form onSubmit = { handleSubmit }>
@@ -114,7 +116,8 @@ export const FormActivities = () => {
         </div>
       </div> 
       <button type='submit'>Cargar Actividad</button> 
-      <div> ame: </div>  
+    
+      <div>{nameCountry?.map(country => <li key = {country}>{country}</li>)}</div>
     </form>
   )
 }

@@ -1,5 +1,5 @@
 
-import { SHOW_COUNTRIES, SEARCH_COUNTRIES_NAME, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA } from "./types";
+import { SHOW_COUNTRIES, SEARCH_COUNTRIES_NAME, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION } from "./types";
 import { ENDPOINT, ENDPOINT2 } from '../../endpoint/ENDPOINT';
 
 import axios from 'axios';
@@ -42,8 +42,7 @@ export const searchCountryID = (id) => {
 };
 
 
-export const postActivityData = (payload) => { 
-    console.log('llegue a post con esto: ', payload)
+export const postActivityData = (payload) => {    
     return async(dispatch) => { 
     try { await axios.post(`${ENDPOINT2}/`, payload);         
                 return  dispatch({ type: POST_ACTIVITY_DATA, payload: payload})
@@ -52,5 +51,12 @@ export const postActivityData = (payload) => {
         return (error.message)
     }
  }
+
 }
+export const orderByRegion = (region) => {   
+      
+    return {  type: ORDER_BY_REGION, payload: region }
+}
+
+
 
