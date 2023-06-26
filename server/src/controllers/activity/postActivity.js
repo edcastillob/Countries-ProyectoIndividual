@@ -3,13 +3,17 @@ const { Activity } = require('../../db');
 const postActivity = async(req, res) => { 
     const { name, difficulty, duration, season, countries } = req.body;
      console.log(req.body)
+
+
+   
 	try {
-      
+    //   await countries.map( element =>  console.log(element)) 
 		// const searchActivity = await Activity.findOne({where: { name: name }});      
       
         
         // if(!searchActivity ){
             const newActivity = await Activity.create({ name, difficulty, duration, season });
+           
            
              await countries?.map( element =>  newActivity.addCountry(element)) 
            

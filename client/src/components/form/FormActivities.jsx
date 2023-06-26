@@ -10,15 +10,18 @@ export const FormActivities = () => {
     countriesState.sort((x,y) => x.name.localeCompare(y.name));
     
     
+    const [countrySelect, setCountrySelect] = useState([]);
     const [activityData, setActivityData] = useState({
       name: '',
       difficulty: '', 
       duration: '', 
       season: '', 
-      countries: [],
+      countries:[],
     })
+    
 
     const handleChange = (event) => { 
+      event.preventDefault();  
         setActivityData({
           ...activityData,
           [event.target.name]: event.target.value
@@ -26,27 +29,43 @@ export const FormActivities = () => {
      }
 
      const handleSubmit = (event) => { 
-        event.preventDefault();       
-              
-            dispatch(postActivityData((activityData)));
+        event.preventDefault();     
+      
             console.log(activityData)
+            dispatch(postActivityData((activityData)));
             // alert('Actividad creada exitosamente');
             setActivityData({
               name: '',
-                  difficulty: '- Dificultad -',
+                  difficulty: '',
                   duration: '',
-                  season: '- Temporada -',
+                  season: '',
                   countries: []
               });}
 
+    const handleCountrySelect = (event) => setCountrySelect([...countrySelect, event.target.value]);
+    useEffect(() => { setActivityData({
+        ...activityData,
+        countries: countrySelect,
+      });
+    }, [countrySelect]);
+    
 
-    // const handleAddCountry = (event) => { 
-    //   event.preventDefault();  
-    //   setActivityData({
-    //     ...activityData,
-    //     countries:[  ...countries, event.target.value]
-    //   })
-    // }
+      
+    
+    
+    
+    const searchName= () => { 
+      countrySelect.map((country) => {
+        let result = countriesState.find(element =>  element.id === country
+     
+          );
+          console.log(result.name)
+    return(result.name)
+  })    
+    
+  }
+   searchName();
+     
   return (
     <form onSubmit = { handleSubmit }>
 
@@ -82,21 +101,20 @@ export const FormActivities = () => {
           <option value='Primavera'>Primavera</option>
           <option value='Verano'>Verano</option>
         </select> 
-
-                
       <div>
+     
         <div>
-          <select name='countries'  id='countries' onChange = { handleChange }>
+          <select name='countries'  id='countries' onChange = { handleCountrySelect }>
             {
               countriesState.sort()?.map( country => (
                 <option key = {country.id} value = {country.id}>{country.name}</option>
               ))
             }
           </select>
-          {/* <button onClick={handleAddCountry}>+</button> */}
         </div>
       </div> 
       <button type='submit'>Cargar Actividad</button> 
+      <div> ame: </div>  
     </form>
   )
 }
