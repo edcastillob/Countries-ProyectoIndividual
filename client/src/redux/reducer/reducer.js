@@ -1,4 +1,4 @@
-import { SEARCH_COUNTRIES_NAME, SHOW_COUNTRIES, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION } from "../actions/types";
+import { SEARCH_COUNTRIES_NAME, SHOW_COUNTRIES, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES } from "../actions/types";
 
 const initialState = {
     countries: [],
@@ -30,21 +30,42 @@ const reducer = ( state = initialState, actions ) => {
                 ...state,
                 activities:[...state.activities, payload]
             }
-        case ORDER_BY_REGION:
-            if (actions.payload === 'All') {
+
+        case ORDER_BY_REGION:            
+        const orderRegion = state.countries.filter( (country )=> country.region === (actions.payload));
+        // console.log(actions.payload)
+            if (actions.payload !== 'All') {
                 return{
                     ...state,
-                    countries:state.countries
+                    countryRegion:orderRegion
+                }
+            }else{
+
+                return{
+                    ...state,
+                    countryRegion:state.countries
                 }
             }
         
-            console.log('aqui llegue: ', actions.payload)
-            const orderRegion = state.countries.filter( country => country.region.includes(actions.payload));
-            console.log(orderRegion)
+        case ORDER_ASC_DES:    
+        const orderASC = state.countries.sort((x,y) => x.name.localeCompare(y.name));
+        const orderDES = state.countries.sort((x,y) => y.name.localeCompare(x.name));
+        if(actions.payload === 'Asc'){
             return{
                 ...state,
-                countryRegion: state.orderRegion
+                countries: orderASC
             }
+        }else if(actions.payload === 'Desc'){
+            return{
+                ...state,
+                countries: orderDES
+            }
+        }else{
+            return{
+                ...state,
+                countries: state.countries
+            }
+        }    
         default: 
             return { ...state }
     }

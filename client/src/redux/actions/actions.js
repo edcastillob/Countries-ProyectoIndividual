@@ -1,5 +1,5 @@
 
-import { SHOW_COUNTRIES, SEARCH_COUNTRIES_NAME, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION } from "./types";
+import { SHOW_COUNTRIES, SEARCH_COUNTRIES_NAME, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES } from "./types";
 import { ENDPOINT, ENDPOINT2 } from '../../endpoint/ENDPOINT';
 
 import axios from 'axios';
@@ -53,10 +53,14 @@ export const postActivityData = (payload) => {
  }
 
 }
+
 export const orderByRegion = (region) => {   
       
     return {  type: ORDER_BY_REGION, payload: region }
 }
 
-
+export const orderAscDes = (order) => {   
+      
+    return {  type: ORDER_ASC_DES, payload: order }
+}
 

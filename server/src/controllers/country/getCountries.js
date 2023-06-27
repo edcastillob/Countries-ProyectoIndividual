@@ -17,7 +17,7 @@ const getCountries = async(req, res) => {
         
             if(searchCountry.length > 0) return res.status(200).json({searchCountry});
             
-            let searchCountries = await Country.findAll({where: { name:{ [Op.iLike]: `%${name}%` }}, include: { model: Activity }});
+            let searchCountries = await Country.findAll({where: { name:{ [Op.iLike]: `%${req.query.name}%` }}, include: { model: Activity }});
             if(searchCountries.length > 0) return res.status(200).json({searchCountries}); 
                 
                

@@ -3,20 +3,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { showCountries } from "../../redux/actions/actions";
 import { useEffect } from 'react';
 import { Region } from '../filter/region/Region';
+import { Order } from '../filter/order/Order';
 
 export const Countries = () => {
     const dispatch = useDispatch();
     const countriesState = useSelector((state)=> state.countries);
     
     useEffect(() => {
-      dispatch(showCountries());
-      
+      dispatch(showCountries());      
     }, [])
-
     // console.log('Desde effect', countriesState)
   return (
     <div>
       <Region />
+      <Order />
        {        
         countriesState?.map( country => (
           <Country

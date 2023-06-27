@@ -5,3 +5,4 @@
     export const SEARCH_COUNTRIES_ID = 'SEARCH_COUNTRIES_ID';
     export const POST_ACTIVITY_DATA = 'POST_ACTIVITY_DATA';
     export const ORDER_BY_REGION = 'ORDER_BY_REGION';
+    export const ORDER_ASC_DES = 'ORDER_ASC_DES';
