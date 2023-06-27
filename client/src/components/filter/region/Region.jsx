@@ -12,7 +12,7 @@ const countryRegion = useSelector((state)=> state.countryRegion);
             console.log(event.target.value)
              dispatch(orderByRegion((event.target.value)));
  }
- console.log(countryRegion)
+
 
   return (
     <>

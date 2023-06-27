@@ -6,3 +6,4 @@
     export const POST_ACTIVITY_DATA = 'POST_ACTIVITY_DATA';
     export const ORDER_BY_REGION = 'ORDER_BY_REGION';
     export const ORDER_ASC_DES = 'ORDER_ASC_DES';
+    export const ORDER_POPULATION = 'ORDER_POPULATION';
