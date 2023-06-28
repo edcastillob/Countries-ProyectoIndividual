@@ -1,12 +1,13 @@
 import { Country } from '../country/Country';
 import { useSelector, useDispatch } from "react-redux";
-import { showCountries, orderAscDes, orderAscDesRegion ,orderByRegion, orderPopulation, showActivities } from "../../redux/actions/actions";
+import { showCountries, orderAscDes, orderAscDesRegion ,orderByRegion, orderPopulation, showActivities, getActivitiesCountry } from "../../redux/actions/actions";
 import { useEffect } from 'react';
 // import { Region } from '../filter/region/Region';
 import { Order } from '../filter/order/Order';
 // import { Population } from '../filter/population/population';
 import { SearchBar } from "../searchBar/SearchBar"
 import { useState } from 'react';
+import { Activity } from '../Activity/Activity';
 
  
 
@@ -19,24 +20,29 @@ export const Countries = () => {
    const countryRegion = useSelector((state)=> state.countryRegion);
    const countryPopulation = useSelector((state)=> state.countryPopulation);
    const activities = useSelector((state)=> state.activities);
+   const activitiesCountry = useSelector((state)=> state.activitiesCountry);
+   const showActivitiesCountry = useSelector((state)=> state.showActivitiesCountry);
   const [optionCountry, setOptionCountry] = useState([])
   
   useEffect(() =>{
     dispatch(showCountries());
     dispatch(showActivities());
+    // dispatch(getActivitiesCountry());
   },[])
   
   useEffect(() =>{ 
-   
+   console.log(showActivitiesCountry)
     if(countryRegion.length !== 0){
       setOptionCountry(countryRegion)
     }else if (countryPopulation.length !== 0){
-      setOptionCountry(countryPopulation)    
+      setOptionCountry(countryPopulation) 
+    }else if(showActivitiesCountry === true){
+            setOptionCountry([])     
     
     }else{setOptionCountry(countriesState)}
     
    
-  },[countriesState, countryRegion, countryPopulation])
+  },[countriesState, countryRegion, countryPopulation, showActivitiesCountry])
     
 
   
@@ -72,9 +78,13 @@ export const Countries = () => {
                dispatch(orderPopulation((event.target.value)));
    }
 
-   const handleShowActivities = (event) => { 
+   const handleActivitiesCountry = (event) => { 
       event.preventDefault();
-      
+      console.log(event.target.value)
+   console.log(showActivitiesCountry)
+
+      dispatch(getActivitiesCountry((event.target.value))); 
+      console.log('Esto es activity country:  ', activitiesCountry)   
    }
 
   return (
@@ -110,15 +120,31 @@ export const Countries = () => {
       </select>
 
       {/* actividades turisticas */}
-      <select name='activities'  id='activities' onChange = { handleShowActivities }>
+      <select name='activities'  id='activities' onChange = { handleActivitiesCountry }>
       <option value="" >Actividades T</option>
             { activities.sort()?.map( activities => (
                 <option key = {activities.id} value = {activities.id}>{activities.name}</option>
             )) }
-          </select>
+      </select>
+     
+           { 
+           activitiesCountry?.map( activTurist => 
+           <Activity 
+            key= {activTurist.activity.id}
+            name = {activTurist.activity.name}            
+            countryID = {activTurist.searchActivityCountry.map(country => (country.CountryId))}
+           /> 
+           )}
 
-       {        
-        optionCountry?.map( country => (
+           {/* { activitiesCountry?.map( country =>  
+              <div key={country.activity.id}>
+                {country.activity.name}            
+                {country.searchActivityCountry.map(e => (e.CountryId))}
+              </div>
+           )}     */}         
+
+          {        
+          optionCountry?.map( country => (
           <Country
             key = { country.id }
             id={country.id}

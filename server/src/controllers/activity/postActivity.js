@@ -2,7 +2,7 @@ const { Activity } = require('../../db');
 
 const postActivity = async(req, res) => { 
     const { name, difficulty, duration, season, countries } = req.body;
-     console.log(req.body)
+   
 
 
    

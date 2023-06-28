@@ -1,5 +1,5 @@
 
-import { SHOW_COUNTRIES, SEARCH_COUNTRIES_NAME, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES,ORDER_ASC_DES_REGION, ORDER_POPULATION, ORDER_REGION, SHOW_ACTIVITIES } from "./types";
+import { SHOW_COUNTRIES, SEARCH_COUNTRIES_NAME, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES,ORDER_ASC_DES_REGION, ORDER_POPULATION, ORDER_REGION, SHOW_ACTIVITIES, GET_ACTIVITIES_COUNTRY } from "./types";
 import { ENDPOINT, ENDPOINT2 } from '../../endpoint/ENDPOINT';
 
 import axios from 'axios';
@@ -35,6 +35,17 @@ export const searchCountryID = (id) => {
         return async(dispatch) => { 
             const { data } = await axios.get(`${ENDPOINT}/${id}`);         
                 return dispatch({ type: SEARCH_COUNTRIES_ID, payload: data.searchCountry })
+        };
+    } catch (error) {
+        return (error.message)
+    }
+};
+export const getActivitiesCountry = (id) => { 
+    try {
+        return async(dispatch) => { 
+            const { data } = await axios.get(`${ENDPOINT2}country/${id}`); 
+                  
+                return dispatch({ type: GET_ACTIVITIES_COUNTRY, payload: [data]})
         };
     } catch (error) {
         return (error.message)

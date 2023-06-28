@@ -1,4 +1,4 @@
-import { SEARCH_COUNTRIES_NAME, SHOW_COUNTRIES, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES,ORDER_ASC_DES_REGION, ORDER_POPULATION, ORDER_REGION, SHOW_ACTIVITIES } from "../actions/types";
+import { SEARCH_COUNTRIES_NAME, SHOW_COUNTRIES, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES,ORDER_ASC_DES_REGION, ORDER_POPULATION, ORDER_REGION, SHOW_ACTIVITIES, GET_ACTIVITIES_COUNTRY } from "../actions/types";
 
 const initialState = {
     countries: [],
@@ -7,6 +7,8 @@ const initialState = {
     countryOrder:[],
     countryPopulation:[],
     activities:[],
+    activitiesCountry:[],
+    showActivitiesCountry: false,
 
 }
 
@@ -17,6 +19,7 @@ const reducer = ( state = initialState, actions ) => {
             return{
                 ...state,
                 countries: actions.payload,
+                showActivitiesCountry: false
             }
         case SEARCH_COUNTRIES_NAME:
             return{
@@ -40,14 +43,16 @@ const reducer = ( state = initialState, actions ) => {
             if (actions.payload === 'All') {
                 return{
                     ...state,
-                    countryRegion: [...state.countries]
+                    countryRegion: [...state.countries],
+                    showActivitiesCountry: false
                 }
             }else{
 
                 return{
                     ...state,
                     // countryRegion: orderRegion
-                    countryRegion: orderRegion
+                    countryRegion: orderRegion, 
+                    showActivitiesCountry: false
                 }
             }
             
@@ -109,6 +114,7 @@ const reducer = ( state = initialState, actions ) => {
                 ...state,
                 countryRegion: [],
                 countryPopulation: bigPopulation,
+                showActivitiesCountry: false
                 
             }
         }else if(actions.payload === 'smallPopulation'){
@@ -117,11 +123,13 @@ const reducer = ( state = initialState, actions ) => {
                 ...state,
                 countryRegion: [],
                 countryPopulation: smallPopulation,
+                showActivitiesCountry: false
             }
         }else{
             return{
                 ...state,
-                countryPopulation: state.countries
+                countryPopulation: state.countries,
+                showActivitiesCountry: false
             }
         }
 
@@ -151,6 +159,13 @@ const reducer = ( state = initialState, actions ) => {
             return{
                 ...state,
                 activities: actions.payload,
+            }
+
+            case GET_ACTIVITIES_COUNTRY:
+            return{
+                ...state,
+                activitiesCountry:actions.payload,
+                showActivitiesCountry: true,
             }
       
         default: 
