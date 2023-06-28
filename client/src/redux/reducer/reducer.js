@@ -2,6 +2,7 @@ import { SEARCH_COUNTRIES_NAME, SHOW_COUNTRIES, SEARCH_COUNTRIES_ID, POST_ACTIVI
 
 const initialState = {
     countries: [],
+    countriesName:[],
     countryDetail:[],
     countryRegion:[],
     countryOrder:[],
@@ -19,12 +20,16 @@ const reducer = ( state = initialState, actions ) => {
             return{
                 ...state,
                 countries: actions.payload,
-                showActivitiesCountry: false
+                activitiesCountry:[],
             }
         case SEARCH_COUNTRIES_NAME:
             return{
                 ...state,
-                countries: actions.payload,
+                countriesName: actions.payload,
+                activitiesCountry:[],
+                countryPopulation:[],
+                countryRegion:[],
+                activitiesCountry:[],
             }
         case SEARCH_COUNTRIES_ID:
             return{
@@ -44,7 +49,7 @@ const reducer = ( state = initialState, actions ) => {
                 return{
                     ...state,
                     countryRegion: [...state.countries],
-                    showActivitiesCountry: false
+                    activitiesCountry:[],
                 }
             }else{
 
@@ -52,7 +57,7 @@ const reducer = ( state = initialState, actions ) => {
                     ...state,
                     // countryRegion: orderRegion
                     countryRegion: orderRegion, 
-                    showActivitiesCountry: false
+                    activitiesCountry:[],
                 }
             }
             
@@ -64,19 +69,22 @@ const reducer = ( state = initialState, actions ) => {
                     return{
                 ...state,
                 countryPopulation:[],
-                countries: orderASC
+                countries: orderASC,
+                activitiesCountry:[],
             }
         }else if(actions.payload === 'Des'){
             
                 return{
                         ...state,
                 countryPopulation:[],
-                countries: orderDES
+                countries: orderDES,
+                activitiesCountry:[],
             }
         }else{
                 return{
                         ...state,
-                        countries: state.countries
+                        countries: state.countries,
+                        activitiesCountry:[],
                     }
                 }
                 
@@ -89,18 +97,21 @@ const reducer = ( state = initialState, actions ) => {
                     
                     return{
                         ...state,
-                        countryRegion: orderAscR
+                        countryRegion: orderAscR,
+                        activitiesCountry:[],
                     }
                 }else if(actions.payload === 'Des'){
                     
                     return{
                         ...state,
-                        countryRegion: orderDesR
+                        countryRegion: orderDesR,
+                        activitiesCountry:[],
                     }
                 }else{
                     return{
                         ...state,
-                        countryRegion: state.countryRegion
+                        countryRegion: state.countryRegion,
+                        activitiesCountry:[],
                     }
                 }
 
@@ -114,22 +125,22 @@ const reducer = ( state = initialState, actions ) => {
                 ...state,
                 countryRegion: [],
                 countryPopulation: bigPopulation,
-                showActivitiesCountry: false
+                activitiesCountry:[],
                 
             }
         }else if(actions.payload === 'smallPopulation'){
             
             return{
                 ...state,
-                countryRegion: [],
                 countryPopulation: smallPopulation,
-                showActivitiesCountry: false
+                countryRegion: [],
+                activitiesCountry:[],
             }
         }else{
             return{
                 ...state,
                 countryPopulation: state.countries,
-                showActivitiesCountry: false
+                activitiesCountry:[],
             }
         }
 
@@ -140,18 +151,22 @@ const reducer = ( state = initialState, actions ) => {
                 
                 return{
                     ...state,
-                    countries: orderRAsc
+                    countries: orderRAsc,
+                    
+                    
                 }
             }else if(actions.payload === 'Des'){
                 
                 return{
                     ...state,
-                    countries: orderRDes
+                    countries: orderRDes,
+                    
                 }
             }else{
                 return{
                     ...state,
-                    countryRegion: state.countryRegion
+                    countryRegion: state.countryRegion,
+                    
                 }
             }
             
@@ -166,6 +181,9 @@ const reducer = ( state = initialState, actions ) => {
                 ...state,
                 activitiesCountry:actions.payload,
                 showActivitiesCountry: true,
+                countryPopulation:[],
+                countryRegion:[],
+                countriesName:[],
             }
       
         default: 

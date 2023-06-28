@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"
-import { SearchBar } from "../searchBar/SearchBar"
+
 
 
 export const Navbar = () => {
@@ -9,7 +9,7 @@ export const Navbar = () => {
         <NavLink to='/activities'><button>Activity</button></NavLink>
         <NavLink to='/home'><button>home</button></NavLink>
 
-         {/* <SearchBar /> */}
+      
     </div>
   )
 }

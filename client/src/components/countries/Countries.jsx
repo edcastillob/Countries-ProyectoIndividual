@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 // import { Region } from '../filter/region/Region';
 import { Order } from '../filter/order/Order';
 // import { Population } from '../filter/population/population';
-import { SearchBar } from "../searchBar/SearchBar"
+// import { SearchBar } from "../searchBar/SearchBar"
 import { useState } from 'react';
 import { Activity } from '../Activity/Activity';
 
@@ -15,6 +15,7 @@ export const Countries = () => {
   const dispatch = useDispatch();     
   
   const countriesState = useSelector((state)=> state.countries);
+  const countriesName = useSelector((state)=> state.countriesName);
   // console.log(countriesState)
   // const countryOrder = useSelector((state)=> state.countryOrder);
    const countryRegion = useSelector((state)=> state.countryRegion);
@@ -35,14 +36,17 @@ export const Countries = () => {
     if(countryRegion.length !== 0){
       setOptionCountry(countryRegion)
     }else if (countryPopulation.length !== 0){
-      setOptionCountry(countryPopulation) 
+      setOptionCountry(countryPopulation)
+    }else if(countriesName.length !== 0){
+      console.log(countriesName)
+      setOptionCountry(countriesName)
     }else if(showActivitiesCountry === true){
             setOptionCountry([])     
     
     }else{setOptionCountry(countriesState)}
     
    
-  },[countriesState, countryRegion, countryPopulation, showActivitiesCountry])
+  },[countriesState, countryRegion, countryPopulation, showActivitiesCountry, countriesName])
     
 
   
@@ -93,7 +97,7 @@ export const Countries = () => {
       {/* <Region /> */}
      {/* <Order />   */}
       {/* <Population /> */}
-        <SearchBar/>
+        
       {/* Ordenar ascendente y descendente */}
       <select name='order' id='order' onChange={handleOrderAscDes}>
         <option value="">Ordenar</option>
@@ -133,6 +137,7 @@ export const Countries = () => {
             key= {activTurist.activity.id}
             name = {activTurist.activity.name}            
             countryID = {activTurist.searchActivityCountry.map(country => (country.CountryId))}
+           
            /> 
            )}
 
