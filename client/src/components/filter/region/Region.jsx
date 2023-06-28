@@ -1,6 +1,7 @@
 import { Country } from '../../country/Country';
-import { orderByRegion } from "../../../redux/actions/actions"
+import { orderByRegion} from "../../../redux/actions/actions"
 import { useDispatch, useSelector } from "react-redux"
+import { OrderRegion } from '../orderRegion/OrderRegion';
 
 export const Region = () => { 
 const dispatch = useDispatch();
@@ -15,9 +16,13 @@ const countryRegion = useSelector((state)=> state.countryRegion);
 
 
   return (
+
     <>
+    {(countryRegion.length !== 0 ? <OrderRegion /> : null)
+}    
     <select name='region' id='region' onChange = { handleChange }>
-    <option value="All">All</option>
+    <option value="">Continente</option>
+    <option value="All">Todos</option>
     <option value="Africa">Africa</option>
     <option value="Americas">America</option>
     <option value="Antarctic">Antarctica</option>
@@ -36,7 +41,8 @@ const countryRegion = useSelector((state)=> state.countryRegion);
             region = {country.region}
             />
         ))
-       }  
+       } 
+     
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { SEARCH_COUNTRIES_NAME, SHOW_COUNTRIES, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES, ORDER_POPULATION } from "../actions/types";
+import { SEARCH_COUNTRIES_NAME, SHOW_COUNTRIES, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES,ORDER_ASC_DES_REGION, ORDER_POPULATION, ORDER_REGION, SHOW_ACTIVITIES } from "../actions/types";
 
 const initialState = {
     countries: [],
@@ -11,6 +11,7 @@ const initialState = {
 }
 
 const reducer = ( state = initialState, actions ) => {
+    
     switch (actions.type){
         case SHOW_COUNTRIES:
             return{
@@ -34,44 +35,71 @@ const reducer = ( state = initialState, actions ) => {
             }
 
         case ORDER_BY_REGION:            
-        const orderRegion = state.countries.filter( (country )=> country.region === (actions.payload));
+        const orderRegion = [...state.countries].filter( (country )=> country.region === (actions.payload));
         
-            if (actions.payload !== 'All') {
+            if (actions.payload === 'All') {
                 return{
                     ...state,
-                    countryRegion:orderRegion
+                    countryRegion: [...state.countries]
                 }
             }else{
 
                 return{
                     ...state,
-                    countryRegion:state.countries
+                    // countryRegion: orderRegion
+                    countryRegion: orderRegion
                 }
             }
-        
-        case ORDER_ASC_DES:    
-        const orderASC =  [...state.countries].sort((x, y) => x.name.localeCompare(y.name));
-        const orderDES =  [...state.countries].sort((x, y) => y.name.localeCompare(x.name));
-        if(actions.payload === 'Asc'){
             
-            return{
+            case ORDER_ASC_DES:    
+            const orderASC =  [...state.countries].sort((x, y) => x.name.localeCompare(y.name));
+            const orderDES =  [...state.countries].sort((x, y) => y.name.localeCompare(x.name));
+            if(actions.payload === 'Asc'){
+                
+                    return{
                 ...state,
+                countryPopulation:[],
                 countries: orderASC
             }
         }else if(actions.payload === 'Des'){
             
-            return{
-                ...state,
+                return{
+                        ...state,
+                countryPopulation:[],
                 countries: orderDES
             }
         }else{
-            return{
-                ...state,
-                countries: state.countries
-            }
-        }
-        
-        case ORDER_POPULATION:
+                return{
+                        ...state,
+                        countries: state.countries
+                    }
+                }
+                
+                case ORDER_ASC_DES_REGION: 
+                 
+                
+                const orderAscR =  [...state.countryRegion].sort((x, y) => x.name.localeCompare(y.name));
+                const orderDesR =  [...state.countryRegion].sort((x, y) => y.name.localeCompare(x.name));
+                if(actions.payload === 'Asc'){
+                    
+                    return{
+                        ...state,
+                        countryRegion: orderAscR
+                    }
+                }else if(actions.payload === 'Des'){
+                    
+                    return{
+                        ...state,
+                        countryRegion: orderDesR
+                    }
+                }else{
+                    return{
+                        ...state,
+                        countryRegion: state.countryRegion
+                    }
+                }
+
+                case ORDER_POPULATION:
         const bigPopulation =[...state.countries].sort((x,y) => y.population - x.population);
         const smallPopulation =[...state.countries].sort((x,y) => x.population - y.population);
         
@@ -79,20 +107,52 @@ const reducer = ( state = initialState, actions ) => {
            
             return{
                 ...state,
-                countryPopulation: bigPopulation
+                countryRegion: [],
+                countryPopulation: bigPopulation,
+                
             }
         }else if(actions.payload === 'smallPopulation'){
             
             return{
                 ...state,
-                countryPopulation: smallPopulation
+                countryRegion: [],
+                countryPopulation: smallPopulation,
             }
         }else{
             return{
                 ...state,
-                countries: state.countries
+                countryPopulation: state.countries
             }
         }
+
+        case ORDER_REGION:
+            const orderRAsc =  [...state.countryRegion].sort((x, y) => x.name.localeCompare(y.name));
+            const orderRDes =  [...state.countryRegion].sort((x, y) => y.name.localeCompare(x.name));
+            if(actions.payload === 'Asc'){
+                
+                return{
+                    ...state,
+                    countries: orderRAsc
+                }
+            }else if(actions.payload === 'Des'){
+                
+                return{
+                    ...state,
+                    countries: orderRDes
+                }
+            }else{
+                return{
+                    ...state,
+                    countryRegion: state.countryRegion
+                }
+            }
+            
+            case SHOW_ACTIVITIES:
+            return{
+                ...state,
+                activities: actions.payload,
+            }
+      
         default: 
             return { ...state }
     }

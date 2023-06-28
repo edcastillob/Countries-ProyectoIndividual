@@ -1,5 +1,5 @@
 
-import { SHOW_COUNTRIES, SEARCH_COUNTRIES_NAME, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES, ORDER_POPULATION } from "./types";
+import { SHOW_COUNTRIES, SEARCH_COUNTRIES_NAME, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES,ORDER_ASC_DES_REGION, ORDER_POPULATION, ORDER_REGION, SHOW_ACTIVITIES } from "./types";
 import { ENDPOINT, ENDPOINT2 } from '../../endpoint/ENDPOINT';
 
 import axios from 'axios';
@@ -63,9 +63,30 @@ export const orderAscDes = (order) => {
       
     return {  type: ORDER_ASC_DES, payload: order }
 }
+export const orderAscDesRegion = (orderRegion) => {   
+      
+    return {  type: ORDER_ASC_DES_REGION, payload: orderRegion }
+}
 
 export const orderPopulation = (population) => {   
       
     return {  type: ORDER_POPULATION, payload: population }
+}
+
+export const orderRegion = (orderRegion) => {   
+      
+    return {  type: ORDER_REGION, payload: orderRegion }
+}
+
+export const showActivities = () => {   
+      
+    try {
+        return async (dispatch) => { 
+           const { data } = await axios.get(ENDPOINT2);
+                return dispatch({ type: SHOW_ACTIVITIES, payload: data.searchActivity });
+         }
+    } catch (error) {
+        return (error.message)
+    }
 }
 

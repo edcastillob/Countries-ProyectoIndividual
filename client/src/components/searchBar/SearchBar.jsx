@@ -9,6 +9,7 @@ export const SearchBar = () => {
 
     const handleChange = ({target}) => { 
         const { value } = target;
+        console.log(value)
         setName(value);
     }
 
@@ -17,7 +18,6 @@ export const SearchBar = () => {
         dispatch(searchCountryName(name));
         setName('')
     }
-
   return (
     <div>
         <input 

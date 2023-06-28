@@ -2,6 +2,8 @@ import { Country } from '../../country/Country';
 import {  orderPopulation } from "../../../redux/actions/actions"
 import { useDispatch, useSelector } from "react-redux"
 
+      
+
 export const Population = () => { 
 const dispatch = useDispatch();
 const countryPopulation = useSelector((state)=> state.countryPopulation);
@@ -16,11 +18,12 @@ const countryPopulation = useSelector((state)=> state.countryPopulation);
 
   return (
     <>
+
     <select name='population' id='population' onChange = { handleChange }>
-    <option value="">Poblacion</option>
-    <option value="bigPopulation">Mayor Población</option>
-    <option value="smallPopulation">Menor Población</option>       
-  </select>
+      <option value="">Poblacion</option>
+      <option value="bigPopulation">Mayor Población</option>
+      <option value="smallPopulation">Menor Población</option>       
+    </select>
 
   {        
         countryPopulation?.map( country => (

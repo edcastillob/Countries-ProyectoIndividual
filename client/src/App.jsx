@@ -13,11 +13,11 @@ import { Region } from './components/filter/region/Region';
 
 export function App() {
   const location = useLocation();
-  const sb =location.pathname;
+ 
   return (
     <>
     {
-       (sb === '/') ? null : <Navbar />
+       (location.pathname === '/') ? null : <Navbar />
     }
      <Routes>
 

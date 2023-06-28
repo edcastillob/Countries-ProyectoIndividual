@@ -7,3 +7,6 @@
     export const ORDER_BY_REGION = 'ORDER_BY_REGION';
     export const ORDER_ASC_DES = 'ORDER_ASC_DES';
     export const ORDER_POPULATION = 'ORDER_POPULATION';
+    export const ORDER_REGION = 'ORDER_REGION';
+    export const ORDER_ASC_DES_REGION = 'ORDER_ASC_DES_REGION';
+    export const SHOW_ACTIVITIES = 'SHOW_ACTIVITIES';

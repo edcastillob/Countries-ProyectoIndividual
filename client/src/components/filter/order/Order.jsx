@@ -1,38 +1,16 @@
-import { Country } from '../../country/Country';
-import { orderAscDes } from "../../../redux/actions/actions"
-import { useDispatch, useSelector } from "react-redux"
+
 
 export const Order = () => { 
-const dispatch = useDispatch();
-const countryOrder = useSelector((state)=> state.countryOrder);
-
- const handleChange=(event) => { 
-    event.preventDefault();     
-
-            console.log(event.target.value)
-             dispatch(orderAscDes((event.target.value)));
- }
-
-
   return (
     <>
-    <select name='order' id='order' onChange = { handleChange }>
+    
+    <select name='order' id='order'>
     <option value="">Ordenar</option>
     <option value="Asc">Ascendente</option>
-    <option value="Des">Descendente</option>       
-  </select>
+    <option value="Des">Descendente</option>      
+    </select>
 
-  {        
-        countryOrder?.map( country => (
-          <Country
-            key = { country.id }
-            id={country.id}
-            name = {country.name}
-            flags = {country.flags}
-            region = {country.region}
-            />
-        ))
-       }  
+ 
     </>
   )
 }
