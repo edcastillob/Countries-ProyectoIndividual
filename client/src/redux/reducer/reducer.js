@@ -1,26 +1,29 @@
 import { SEARCH_COUNTRIES_NAME, SHOW_COUNTRIES, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES,ORDER_ASC_DES_REGION, ORDER_POPULATION, ORDER_REGION, SHOW_ACTIVITIES, GET_ACTIVITIES_COUNTRY } from "../actions/types";
 
 const initialState = {
+    activities:[],
     countries: [],
+    // currentPage:0,
+    countryOrder:[],
+    countryRegion:[],
     countriesName:[],
     countryDetail:[],
-    countryRegion:[],
-    countryOrder:[],
-    countryPopulation:[],
-    activities:[],
     activitiesCountry:[],
+    countryPopulation:[],
+    // countriesPagination:[],
     showActivitiesCountry: false,
 
 }
 
 const reducer = ( state = initialState, actions ) => {
-    
+    // const ITEMS_FOR_PAGE = 2;
     switch (actions.type){
         case SHOW_COUNTRIES:
             return{
                 ...state,
                 countries: actions.payload,
                 activitiesCountry:[],
+                
             }
         case SEARCH_COUNTRIES_NAME:
             return{
@@ -184,7 +187,32 @@ const reducer = ( state = initialState, actions ) => {
                 countryPopulation:[],
                 countryRegion:[],
                 countriesName:[],
+                
             }
+
+            // case PAGINATION:
+            
+            // const nextPage = state.currentPage + 1; 
+            // const prevPage = state.currentPage - 1;  
+            // const index = actions.payload === 'index' ? (nextPage * ITEMS_FOR_PAGE) : (prevPage * ITEMS_FOR_PAGE);
+
+            // if(state.countryPopulation){
+            //     if(index >= state.countryPopulation.length) {return{...state}}
+            //     console.log( [...state.countryPopulation].splice(index, ITEMS_FOR_PAGE))
+            //     return{
+            //         ...state,
+            //     countryPopulation: [...state.countryPopulation].splice(index, ITEMS_FOR_PAGE),
+            //     currentPage: actions.payload === 'next' ? nextPage : prevPage
+            // }
+            // }
+            
+            // if(actions.payload === 'next' && index >= state.countries.length) {return {...state}
+            // }else if(actions.payload === 'prev' && prevPage < 0){return{...state}}            
+            // return{
+            //     ...state,
+            //     countriesPagination: [...state.countries].splice(index, ITEMS_FOR_PAGE),
+            //     currentPage: actions.payload === 'next' ? nextPage : prevPage
+            // }
       
         default: 
             return { ...state }

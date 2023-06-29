@@ -101,3 +101,7 @@ export const showActivities = () => {
     }
 }
 
+// export const pagination = (pagination) => {   
+     
+//     return {  type: PAGINATION, payload: pagination }
+// }
