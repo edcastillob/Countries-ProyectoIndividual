@@ -1,5 +1,5 @@
 
-import { SHOW_COUNTRIES, SEARCH_COUNTRIES_NAME, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES,ORDER_ASC_DES_REGION, ORDER_POPULATION, ORDER_REGION, SHOW_ACTIVITIES, GET_ACTIVITIES_COUNTRY } from "./types";
+import { SHOW_COUNTRIES, SEARCH_COUNTRIES_NAME, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES,ORDER_ASC_DES_REGION, ORDER_POPULATION, ORDER_REGION, SHOW_ACTIVITIES, GET_ACTIVITIES_COUNTRY, PAGINATION, ORDER_ASC_DES_COUNTRIES_NAME } from "./types";
 import { ENDPOINT, ENDPOINT2 } from '../../endpoint/ENDPOINT';
 
 import axios from 'axios';
@@ -71,14 +71,17 @@ export const orderByRegion = (region) => {
 }
 
 export const orderAscDes = (order) => {   
-      
+      console.log(order)
     return {  type: ORDER_ASC_DES, payload: order }
 }
 export const orderAscDesRegion = (orderRegion) => {   
       
     return {  type: ORDER_ASC_DES_REGION, payload: orderRegion }
 }
-
+export const orderAscDesCountriesName = (orderRegion) => {   
+      
+    return {  type: ORDER_ASC_DES_COUNTRIES_NAME, payload: orderRegion }
+}
 export const orderPopulation = (population) => {   
       
     return {  type: ORDER_POPULATION, payload: population }
@@ -101,7 +104,7 @@ export const showActivities = () => {
     }
 }
 
-// export const pagination = (pagination) => {   
-     
-//     return {  type: PAGINATION, payload: pagination }
-// }
+export const pagination = (pagination) => {   
+   
+    return {  type: PAGINATION, payload: pagination }
+}

@@ -13,10 +13,9 @@ const postActivity = async(req, res) => {
         
         // if(!searchActivity ){
             const newActivity = await Activity.create({ name, difficulty, duration, season });
+
            
-           
-             await countries?.map( element =>  newActivity.addCountry(element)) 
-           
+             await countries?.map( element =>  newActivity.addCountry(element))          
             
                 
                                 
@@ -24,9 +23,9 @@ const postActivity = async(req, res) => {
             return res.status(200).send(`activity ${name} has been created`);
         // }
         // return res.status(200).json({ msg: `the activity ${name} already exists` });
-	} catch (error) {
+	} catch (error)  {
 
-		return res.status(400).json({ error: req.body });
+		return res.status(400).json({ error: error.message });
 	}
 
 };

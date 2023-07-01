@@ -16,12 +16,13 @@ const Activity = (sequelize) => {
     difficulty:{
       type: DataTypes.INTEGER,
       allowNull: false,
-      validate:{ min: 1, max: 5 }
+      validate:{ min: 1, max: 5 },
       
     },
     duration:{
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate:{ min: 1, max: 2164 },
     },
     season:{
       type: DataTypes.ENUM('Verano', 'Otoño', 'Invierno' , 'Primavera'),

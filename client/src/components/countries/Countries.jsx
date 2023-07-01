@@ -1,11 +1,7 @@
 import { Country } from '../country/Country';
 import { useSelector, useDispatch } from "react-redux";
-import { showCountries, orderAscDes, orderAscDesRegion ,orderByRegion, orderPopulation, showActivities, getActivitiesCountry} from "../../redux/actions/actions";
+import { showCountries, orderAscDes, orderAscDesRegion ,orderByRegion, orderPopulation, showActivities, getActivitiesCountry, pagination, orderAscDesCountriesName} from "../../redux/actions/actions";
 import { useEffect } from 'react';
-// import { Region } from '../filter/region/Region';
-// import { Order } from '../filter/order/Order';
-// import { Population } from '../filter/population/population';
-// import { SearchBar } from "../searchBar/SearchBar"
 import { useState } from 'react';
 import { Activity } from '../Activity/Activity';
 
@@ -15,139 +11,201 @@ export const Countries = () => {
   const dispatch = useDispatch();     
   
   const countriesState = useSelector((state)=> state.countries);
-  const countriesName = useSelector((state)=> state.countriesName);
-  // const countriesPagination = useSelector((state)=> state.countriesPagination);
-  //----------------------------------------------------------------------------------------
-  const ITEMS_FOR_PAGE = 10; 
-  const [currentPage, setCurrentPage] = useState(0);
-   const [item, setItem] = useState([...countriesState].splice(0, ITEMS_FOR_PAGE))
-  //  const [itemPopulation, setItemPopulation] = useState([...countryPopulation].splice(0, ITEMS_FOR_PAGE))
-
-   const handlePagNext = () => {
-     const nextPage = currentPage + 1;
-     const index = nextPage * ITEMS_FOR_PAGE;
-    // if(countryPopulation){
-    //   if(index >= countryPopulation.length) return;
-    //   setItemPopulation([...countryPopulation].splice(index, ITEMS_FOR_PAGE))
-    //   setCurrentPage(nextPage)
-    // }
-    if(index >= countriesState.length) return;
-    setItem([...countriesState].splice(index, ITEMS_FOR_PAGE))
-    setCurrentPage(nextPage)
-   };
-
-   const handlePagPrev = () => {
-     const prevPage = currentPage - 1;
-     const index = prevPage * ITEMS_FOR_PAGE;
-     if(prevPage < 0) return;
-    // if(countryPopulation){
-    //   setItemPopulation([...countryPopulation].splice(index, ITEMS_FOR_PAGE))
-    //   setCurrentPage(prevPage)
-    // }
-    
-    setItem([...countriesState].splice(index, ITEMS_FOR_PAGE))
-    setCurrentPage(prevPage)
-   };
-  //----------------------------------------------------------------------------------------
-  // console.log(countriesState)
-  // const countryOrder = useSelector((state)=> state.countryOrder);
+  const countriesPagination = useSelector((state)=> state.countriesPagination);
+  const countriesPopulation = useSelector((state)=> state.countriesPopulation);
+  const countriesName = useSelector((state)=> state.countriesName);  
    const countryRegion = useSelector((state)=> state.countryRegion);
    const countryPopulation = useSelector((state)=> state.countryPopulation);
    const activities = useSelector((state)=> state.activities);
    const activitiesCountry = useSelector((state)=> state.activitiesCountry);
    const showActivitiesCountry = useSelector((state)=> state.showActivitiesCountry);
+
   const [optionCountry, setOptionCountry] = useState([])
+
   
-  useEffect(() => {setItem([...countriesState].splice(0, ITEMS_FOR_PAGE))
-                    // setItemPopulation([...countryPopulation].splice(0, ITEMS_FOR_PAGE))
-                  }, [countriesState])
+  
   useEffect(() =>{
     dispatch(showCountries());
     dispatch(showActivities());
     
   },[])
+  // -------------------------------------------------------------------------------------
+  // -------------------------------------------------------------------------------------
+  const ITEMS_FOR_PAGE = 10; 
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemInitial, setItemInitial] = useState([...countriesState]?.splice(0, ITEMS_FOR_PAGE))
+   const [itemPopulation, setItemPopulation] = useState([...countryPopulation]?.splice(0, ITEMS_FOR_PAGE))
+   const [itemRegion, setItemRegion] = useState([...countryRegion]?.splice(0, ITEMS_FOR_PAGE))
+   const [itemCountriesName, setCountriesName] = useState([...countriesName]?.splice(0, ITEMS_FOR_PAGE))
+ 
+   const handlePagNext = () => {
+    // console.log('Countries :', countriesState.length)
+    // console.log('Pagintacion :',countriesPagination.length)
+    // console.log('Continentes :',countryRegion.length)
+    // console.log(' name :',countriesName.length)
+    // console.log('Poblacion :',countryPopulation.length)
+
+    const nextPage = currentPage + 1;
+    const index = nextPage * ITEMS_FOR_PAGE;
+    
+    if(countriesState.length){
+      if(index >= countriesState.length) return;
+      setItemInitial([...countriesState]?.splice(index, ITEMS_FOR_PAGE))
+      setCurrentPage(nextPage)     
+     }
+    if(countryPopulation.length){
+      if(index >= countryPopulation.length) return;
+      setItemPopulation([...countryPopulation]?.splice(index, ITEMS_FOR_PAGE))
+      setCurrentPage(nextPage)     
+     }
+    
+     if(countryRegion.length){
+      if(index >= countryRegion.length) return;
+      setItemRegion([...countryRegion]?.splice(index, ITEMS_FOR_PAGE))
+      setCurrentPage(nextPage)
+    }
+     if(countriesName.length){
+      if(index >= countriesName.length) return;
+      setCountriesName([...countriesName]?.splice(index, ITEMS_FOR_PAGE))
+      setCurrentPage(nextPage)
+    }
+    dispatch(pagination('next')) 
+  }
+
+    const handlePagPrev = () => {
+    
+    dispatch(pagination('prev'))
+
+    const prevPage = currentPage - 1;
+    const index = prevPage * ITEMS_FOR_PAGE;
+
+    if(prevPage < 0) return;
+
+    if(countriesState.length){
+      setItemInitial([...countriesState]?.splice(index, ITEMS_FOR_PAGE))
+      setCurrentPage(prevPage)
+    } 
+    if(countryPopulation.length){
+      setItemPopulation([...countryPopulation]?.splice(index, ITEMS_FOR_PAGE))
+      setCurrentPage(prevPage)
+    } 
+    if(countryRegion.length){
+      setItemRegion([...countryRegion]?.splice(index, ITEMS_FOR_PAGE))
+      setCurrentPage(prevPage)
+    }
+    if(countriesName.length){
+      setCountriesName([...countriesName]?.splice(index, ITEMS_FOR_PAGE))
+      setCurrentPage(prevPage)
+    }
+   };
+
+   useEffect(() => {
+      setItemInitial([...countriesState]?.splice(0, ITEMS_FOR_PAGE));
+      setItemPopulation([...countryPopulation]?.splice(0, ITEMS_FOR_PAGE));
+      setItemRegion([...countryRegion].splice(0, ITEMS_FOR_PAGE));
+      setCountriesName([...countriesName].splice(0, ITEMS_FOR_PAGE));
+  }, [countryPopulation, countryRegion, countriesState, countriesName])
+  //-------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------------
+
+ 
   
   useEffect(() =>{ 
-   
-    if(countryRegion.length !== 0){
-      setOptionCountry(countryRegion)
-    }else if (countryPopulation.length !== 0){
-      setOptionCountry(countryPopulation)
-    }else if(countriesName.length !== 0){
-      console.log(countriesName)
-      setOptionCountry(countriesName)
+    // console.log('Countries :', countriesState.length)
+    // console.log('Pagintacion :',countriesPagination.length)
+    // console.log('Continentes :',countryRegion.length)
+    // console.log('Poblacion :',countryPopulation.length)
+    // console.log(' name :',countriesName.length)
+
+    if(countryRegion.length === 5 || countryRegion.length > 10 ){
+      setOptionCountry(itemRegion)
+    }else if (countriesState.length > 10){
+      setOptionCountry(itemInitial)
+    }else if (countryPopulation.length > 10){
+      setOptionCountry(itemPopulation)
+    }else if(countriesName.length !== 0){  
+      // console.log(countriesName.length)    
+      setOptionCountry(itemCountriesName)
     }else if(showActivitiesCountry === true){
             setOptionCountry([])     
     
-    }else{setOptionCountry(item)}
+    }else{setOptionCountry(countriesPagination)}
     
    
-  },[item, countryRegion, countryPopulation, showActivitiesCountry, countriesName])
+  },[countriesState, countryRegion, countryPopulation, showActivitiesCountry, countriesName, countriesPagination, itemPopulation, itemRegion, itemCountriesName])
     
 
   
 
     const handleOrderAscDes=(event) => { 
       event.preventDefault(); 
+    // console.log('Countries :', countriesState.length)
+    // console.log('Pagintacion :',countriesPagination.length)
+    // console.log('Poblacion :',countryPopulation.length)
+    // console.log(' name :',countriesName.length)
+    // console.log('Continentes :',countryRegion.length)
       
-      if(optionCountry.length > 245){
-        
-        dispatch(orderAscDes((event.target.value)));
-      }else{
+      if(countryRegion.length){
         dispatch(orderAscDesRegion((event.target.value)));
       }
+      if(countriesName.length){
+        dispatch(orderAscDesCountriesName((event.target.value)));
+      }
+   
+           dispatch(orderAscDes((event.target.value)));
+      }
 
-     
-      
-    }
-
-   const handleOrderRegion=(event) => { 
-      
+   const handleOrderRegion=(event) => {      
       event.preventDefault();
+
+      if(countriesState.length === 0 ) {dispatch(showCountries())}   
+      // dispatch(orderAscDesRegion(('Asc')));
+      setTimeout(() => {
+        dispatch(orderByRegion((event.target.value)))
+        setTimeout(() => dispatch(orderAscDesRegion(('Asc'))), "0");
+      }, "0");
      
-         
-      dispatch(orderByRegion((event.target.value)));    
-         
-      
+
+
+      dispatch(orderAscDesRegion((event.target.value)));
+            
     }
 
     const handleOrderPopulation=(event) => { 
-      event.preventDefault();     
-  
-        
-               dispatch(orderPopulation((event.target.value)));
+      event.preventDefault();
+      // console.log('Countries :', countriesState.length)
+      // console.log('Pagintacion :',countriesPagination.length)
+      // console.log('Continentes :',countryRegion.length)
+      // console.log('Poblacion :',countryPopulation.length)
+      dispatch(orderPopulation((event.target.value)));
    }
 
    const handleActivitiesCountry = (event) => { 
       event.preventDefault();
-
       dispatch(getActivitiesCountry((event.target.value))); 
-      
    }
 
-  //  const handlePagPrev = () => { dispatch(pagination('prev')) }
-  //  const handlePagNext = () => { dispatch(pagination('next')) }
+
 
   return (
     <div>
       
 
 
-      <button onClick={ () => handlePagPrev() }>Prev</button>
-      <button onClick={ () => handlePagNext() }>Next</button>
+      <button onClick={ () => handlePagPrev() }>Anterior</button>
+      <button onClick={ () => handlePagNext() }>Siguiente</button>
+  
    
         
       {/* Ordenar ascendente y descendente */}
-      <select name='order' id='order' onChange={handleOrderAscDes}>
-        <option value="">Ordenar</option>
+      <select name='order' id='order' onChange={handleOrderAscDes}>        
         <option value="Asc">Ascendente</option>
         <option value="Des">Descendente</option>       
       </select>
 
       {/* Ordenar por region */}
       <select name='region' id='region' onChange = { handleOrderRegion }>
-        <option value="">Continente</option>
-        <option value="All">Todos</option>
+        <option value="All">Continentes</option>        
         <option value="Africa">Africa</option>
         <option value="Americas">America</option>
         <option value="Antarctic">Antarctica</option>
@@ -156,8 +214,7 @@ export const Countries = () => {
         <option value="Oceania">Oceania</option>    
       </select>
       {/* Ordenar por poblacion */}
-      <select name='population' id='population' onChange = { handleOrderPopulation }>
-        <option value="">Poblacion</option>
+      <select name='population' id='population' onChange = { handleOrderPopulation }>       
         <option value="bigPopulation">Mayor Población</option>
         <option value="smallPopulation">Menor Población</option>       
       </select>
@@ -165,27 +222,40 @@ export const Countries = () => {
       {/* actividades turisticas */}
       <select name='activities'  id='activities' onChange = { handleActivitiesCountry }>
       <option value="" >Actividades T</option>
-            { activities.sort()?.map( activities => (
+            { activities?.sort().map( activities => (
                 <option key = {activities.id} value = {activities.id}>{activities.name}</option>
             )) }
       </select>
      
-           { 
-           activitiesCountry?.map( activTurist => 
-           <Activity 
-            key= {activTurist.activity.id}
-            name = {activTurist.activity.name}            
-            countryID = {activTurist.searchActivityCountry.map(country => (country.CountryId))}
-           
-           /> 
-           )}
 
-           {/* { activitiesCountry?.map( country =>  
-              <div key={country.activity.id}>
-                {country.activity.name}            
-                {country.searchActivityCountry.map(e => (e.CountryId))}
-              </div>
-           )}     */}         
+
+
+{
+activitiesCountry?.map(activTurist => {
+        const countryNames = activTurist.searchActivityCountry.map(country => {
+          let result = countriesPopulation?.find(element => element.id === country.CountryId);
+          return result;
+        });
+          console.log(countryNames.map(country => <h4>{(country)}</h4>))
+        return (
+          <Activity 
+            key={activTurist.activity.id}
+            name={activTurist.activity.name}            
+            difficulty={activTurist.activity.difficulty}            
+            duration={activTurist.activity.duration}            
+            season={activTurist.activity.season}            
+            flags={activTurist.activity.flags}            
+            region={countryNames.region}
+            countryID={countryNames.map(country => <h4>{(country)}</h4>)}
+          />
+        );
+      })}
+
+
+
+        
+
+              
 
           {        
           optionCountry?.map( country => (
