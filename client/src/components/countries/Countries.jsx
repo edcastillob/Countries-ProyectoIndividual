@@ -236,18 +236,18 @@ activitiesCountry?.map(activTurist => {
           let result = countriesPopulation?.find(element => element.id === country.CountryId);
           return result;
         });
-          console.log(countryNames.map(country => <h4>{(country)}</h4>))
-        return (
-          <Activity 
+          console.log(countryNames.map(country => country.flags))
+          return (
+            <Activity 
             key={activTurist.activity.id}
             name={activTurist.activity.name}            
+            countryID={countryNames.map(country =><h4>{country.name}</h4>)}
             difficulty={activTurist.activity.difficulty}            
             duration={activTurist.activity.duration}            
             season={activTurist.activity.season}            
-            flags={activTurist.activity.flags}            
-            region={countryNames.region}
-            countryID={countryNames.map(country => <h4>{(country)}</h4>)}
-          />
+           
+            />
+             
         );
       })}
 
