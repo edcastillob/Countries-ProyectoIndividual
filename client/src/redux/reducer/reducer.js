@@ -1,6 +1,13 @@
+<<<<<<< HEAD
+import { SEARCH_COUNTRIES_NAME, SHOW_COUNTRIES, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES,ORDER_ASC_DES_REGION, ORDER_POPULATION, ORDER_REGION, SHOW_ACTIVITIES, GET_ACTIVITIES_COUNTRY, PAGINATION, ORDER_ASC_DES_COUNTRIES_NAME, ERRORS, GET_ACTIVITIES_COUNTRY_ALL } from "../actions/types";
+
+const initialState = {
+    errors:[],
+=======
 import { SEARCH_COUNTRIES_NAME, SHOW_COUNTRIES, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES,ORDER_ASC_DES_REGION, ORDER_POPULATION, ORDER_REGION, SHOW_ACTIVITIES, GET_ACTIVITIES_COUNTRY, PAGINATION, ORDER_ASC_DES_COUNTRIES_NAME } from "../actions/types";
 
 const initialState = {
+>>>>>>> ff34d482a7ed0b676587ca19fe44b5904d467dbb
     activities:[],
     countries: [],
     currentPage:0,
@@ -8,6 +15,10 @@ const initialState = {
     countryRegion:[],
     countriesName:[],
     countryDetail:[],
+<<<<<<< HEAD
+    countryActivity:[],
+=======
+>>>>>>> ff34d482a7ed0b676587ca19fe44b5904d467dbb
     activitiesForm:[],
     activitiesCountry:[],
     countryPopulation:[],
@@ -249,6 +260,22 @@ const reducer = ( state = initialState, actions ) => {
                 // countriesPopulation:[],
                 
             }
+<<<<<<< HEAD
+            case GET_ACTIVITIES_COUNTRY_ALL:
+                    
+            return{
+                ...state,
+                countryActivity:actions.payload,
+                showActivitiesCountry: true,
+                countryPopulation:[],
+                countryRegion:[],
+                countriesName:[],
+                // countries:[],
+                // countriesPopulation:[],
+                
+            }
+=======
+>>>>>>> ff34d482a7ed0b676587ca19fe44b5904d467dbb
 
             case PAGINATION:
             
@@ -267,6 +294,13 @@ const reducer = ( state = initialState, actions ) => {
                 countriesPagination: [...state.countries].splice(index, ITEMS_FOR_PAGE),
                 currentPage: actions.payload === 'next' ? nextPage : prevPage
             }
+<<<<<<< HEAD
+
+            case ERRORS:
+                console.log("error :", actions.payload)
+            return{...state, errors:actions.payload}
+=======
+>>>>>>> ff34d482a7ed0b676587ca19fe44b5904d467dbb
       
         default: 
             return { ...state }

@@ -19,6 +19,11 @@ export const Countries = () => {
    const activities = useSelector((state)=> state.activities);
    const activitiesCountry = useSelector((state)=> state.activitiesCountry);
    const showActivitiesCountry = useSelector((state)=> state.showActivitiesCountry);
+<<<<<<< HEAD
+   
+   
+=======
+>>>>>>> ff34d482a7ed0b676587ca19fe44b5904d467dbb
 
   const [optionCountry, setOptionCountry] = useState([])
 
@@ -221,7 +226,11 @@ export const Countries = () => {
 
       {/* actividades turisticas */}
       <select name='activities'  id='activities' onChange = { handleActivitiesCountry }>
+<<<<<<< HEAD
+      <option value="" >Actividades T</option>      
+=======
       <option value="" >Actividades T</option>
+>>>>>>> ff34d482a7ed0b676587ca19fe44b5904d467dbb
             { activities?.sort().map( activities => (
                 <option key = {activities.id} value = {activities.id}>{activities.name}</option>
             )) }
@@ -236,7 +245,11 @@ activitiesCountry?.map(activTurist => {
           let result = countriesPopulation?.find(element => element.id === country.CountryId);
           return result;
         });
+<<<<<<< HEAD
+          
+=======
           console.log(countryNames.map(country => country.flags))
+>>>>>>> ff34d482a7ed0b676587ca19fe44b5904d467dbb
           return (
             <Activity 
             key={activTurist.activity.id}
