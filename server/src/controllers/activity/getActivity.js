@@ -1,11 +1,6 @@
 
-<<<<<<< HEAD
 const { Country, Activity, CountryActivity } = require('../../db');
-const { Op } = require("sequelize");
-=======
-const {  Activity, CountryActivity } = require('../../db');
 
->>>>>>> ff34d482a7ed0b676587ca19fe44b5904d467dbb
 
 const getActivity = async(req, res) => { 
     try {   
@@ -38,7 +33,6 @@ const getActivityCountry = async(req, res) => {
  
 };
 
-<<<<<<< HEAD
 
 
 // const getActivityCountryAll = async (req, res) => {
@@ -83,6 +77,3 @@ const getActivityCountryAll = async (req, res) => {
 };
 
 module.exports = {getActivity, getActivityCountry, getActivityCountryAll}
-=======
-module.exports = {getActivity, getActivityCountry}
->>>>>>> ff34d482a7ed0b676587ca19fe44b5904d467dbb

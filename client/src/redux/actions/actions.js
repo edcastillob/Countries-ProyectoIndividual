@@ -1,11 +1,22 @@
-<<<<<<< HEAD
 /* eslint-disable no-case-declarations */
 /* eslint-disable no-undef */
-import { SHOW_COUNTRIES, SEARCH_COUNTRIES_NAME, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES,ORDER_ASC_DES_REGION, ORDER_POPULATION, ORDER_REGION, SHOW_ACTIVITIES, GET_ACTIVITIES_COUNTRY, PAGINATION, ORDER_ASC_DES_COUNTRIES_NAME, GET_ACTIVITIES_COUNTRY_ALL } from "./types";
-=======
-
-import { SHOW_COUNTRIES, SEARCH_COUNTRIES_NAME, SEARCH_COUNTRIES_ID, POST_ACTIVITY_DATA, ORDER_BY_REGION, ORDER_ASC_DES,ORDER_ASC_DES_REGION, ORDER_POPULATION, ORDER_REGION, SHOW_ACTIVITIES, GET_ACTIVITIES_COUNTRY, PAGINATION, ORDER_ASC_DES_COUNTRIES_NAME } from "./types";
->>>>>>> ff34d482a7ed0b676587ca19fe44b5904d467dbb
+import {
+    GET_ACTIVITIES_COUNTRY,
+    GET_ACTIVITIES_COUNTRY_ALL,
+    ORDER_ASC_DES,
+    ORDER_ASC_DES_COUNTRIES_NAME,
+    ORDER_ASC_DES_REGION,
+    ORDER_BY_REGION,
+    ORDER_POPULATION,
+    ORDER_REGION,
+    PAGINATION,
+    POST_ACTIVITY_DATA,
+    SEARCH_COUNTRIES_ID,
+    SEARCH_COUNTRIES_NAME,
+    SHOW_ACTIVITIES,
+    SHOW_COUNTRIES,
+  } from "./types";
+  
 import { ENDPOINT, ENDPOINT2 } from '../../endpoint/ENDPOINT';
 
 import axios from 'axios';
@@ -24,28 +35,26 @@ export const showCountries = () => {
     }
 };
 
-export const searchCountryName = (name) => { 
-    try {
-        return async(dispatch) => { 
-            const { data } = await axios.get(`${ENDPOINT}?name=${name}`);
-<<<<<<< HEAD
-                
-            if(data.searchCountries) return dispatch({ type: SEARCH_COUNTRIES_NAME, payload: data.searchCountries }) 
-            if(data.searchCountry)return dispatch({ type: SEARCH_COUNTRIES_NAME, payload: data.searchCountry })    
-            // dispatch({ type: ERRORS, payload: 'No existe el pais'})
-        };
+export const searchCountryName = (name) => {
+    return async (dispatch) => {
+      try {
+        const response = await axios.get(`${ENDPOINT}?name=${name}`);
+  
+        if (response.data.searchCountries) {
+          dispatch({ type: SEARCH_COUNTRIES_NAME, payload: response.data.searchCountries });
+        } else if (response.data.searchCountry) {
+          dispatch({ type: SEARCH_COUNTRIES_NAME, payload: response.data.searchCountry });
+        } else {
+         
+          alert('No se encontraron resultados');
+        }
+      } catch (error) {
         
-    } catch (error) {
-        alert(error.response.data)// return (error.message)
-=======
-           
-                return dispatch({ type: SEARCH_COUNTRIES_NAME, payload: data.searchCountries })
-        };
-    } catch (error) {
-        return (error.message)
->>>>>>> ff34d482a7ed0b676587ca19fe44b5904d467dbb
-    }
-};
+        alert('No se encontraron resultados');
+      }
+    };
+  };
+  
 
 export const searchCountryID = (id) => { 
     try {
@@ -68,7 +77,6 @@ export const getActivitiesCountry = (id) => {
         return (error.message)
     }
 };
-<<<<<<< HEAD
 export const getActivitiesCountryAll = () => { 
     try {
         return async(dispatch) => { 
@@ -81,8 +89,18 @@ export const getActivitiesCountryAll = () => {
     }
 };
 
-=======
->>>>>>> ff34d482a7ed0b676587ca19fe44b5904d467dbb
+export const deleteActivity = (id) => { 
+    try {
+        return async() => { 
+            
+            await axios.delete(`${ENDPOINT2}/${id}`); 
+            
+                
+        };
+    } catch (error) {
+        return (error.message)
+    }
+};
 
 
 export const postActivityData = (payload) => {    

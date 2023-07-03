@@ -12,10 +12,8 @@
     export const ORDER_ASC_DES_COUNTRIES_NAME = 'ORDER_ASC_DES_COUNTRIES_NAME';
     export const SHOW_ACTIVITIES = 'SHOW_ACTIVITIES';
     export const GET_ACTIVITIES_COUNTRY = 'GET_ACTIVITIES_COUNTRY';
-<<<<<<< HEAD
     export const GET_ACTIVITIES_COUNTRY_ALL = 'GET_ACTIVITIES_COUNTRY_ALL';
     export const PAGINATION = 'PAGINATION';
-    export const ERRORS = 'ERRORS';
-=======
-    export const PAGINATION = 'PAGINATION';
->>>>>>> ff34d482a7ed0b676587ca19fe44b5904d467dbb
+    
+   
+    

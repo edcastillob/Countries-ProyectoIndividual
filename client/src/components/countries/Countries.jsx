@@ -4,6 +4,7 @@ import { showCountries, orderAscDes, orderAscDesRegion ,orderByRegion, orderPopu
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Activity } from '../Activity/Activity';
+import style from '../moduleCss/Countries.module.css';
 
  
 
@@ -19,11 +20,8 @@ export const Countries = () => {
    const activities = useSelector((state)=> state.activities);
    const activitiesCountry = useSelector((state)=> state.activitiesCountry);
    const showActivitiesCountry = useSelector((state)=> state.showActivitiesCountry);
-<<<<<<< HEAD
    
    
-=======
->>>>>>> ff34d482a7ed0b676587ca19fe44b5904d467dbb
 
   const [optionCountry, setOptionCountry] = useState([])
 
@@ -197,19 +195,20 @@ export const Countries = () => {
       
 
 
-      <button onClick={ () => handlePagPrev() }>Anterior</button>
-      <button onClick={ () => handlePagNext() }>Siguiente</button>
+      <button className={ style.button } onClick={ () => handlePagPrev() }>Anterior</button>
+      <button className={ style.button } onClick={ () => handlePagNext() }>Siguiente</button>
   
    
         
       {/* Ordenar ascendente y descendente */}
-      <select name='order' id='order' onChange={handleOrderAscDes}>        
+      <select className={ style.select } name='order' id='order' onChange={handleOrderAscDes}>        
+        <option >Ordenar</option>
         <option value="Asc">Ascendente</option>
         <option value="Des">Descendente</option>       
       </select>
 
       {/* Ordenar por region */}
-      <select name='region' id='region' onChange = { handleOrderRegion }>
+      <select className={ style.select } name='region' id='region' onChange = { handleOrderRegion }>
         <option value="All">Continentes</option>        
         <option value="Africa">Africa</option>
         <option value="Americas">America</option>
@@ -219,18 +218,15 @@ export const Countries = () => {
         <option value="Oceania">Oceania</option>    
       </select>
       {/* Ordenar por poblacion */}
-      <select name='population' id='population' onChange = { handleOrderPopulation }>       
+      <select className={ style.select } name='population' id='population' onChange = { handleOrderPopulation }>       
+      <option >Población</option>        
         <option value="bigPopulation">Mayor Población</option>
         <option value="smallPopulation">Menor Población</option>       
       </select>
 
       {/* actividades turisticas */}
-      <select name='activities'  id='activities' onChange = { handleActivitiesCountry }>
-<<<<<<< HEAD
-      <option value="" >Actividades T</option>      
-=======
-      <option value="" >Actividades T</option>
->>>>>>> ff34d482a7ed0b676587ca19fe44b5904d467dbb
+      <select className={ style.select } name='activities'  id='activities' onChange = { handleActivitiesCountry }>
+      <option >Actividades Turísticas</option>      
             { activities?.sort().map( activities => (
                 <option key = {activities.id} value = {activities.id}>{activities.name}</option>
             )) }
@@ -245,16 +241,12 @@ activitiesCountry?.map(activTurist => {
           let result = countriesPopulation?.find(element => element.id === country.CountryId);
           return result;
         });
-<<<<<<< HEAD
           
-=======
-          console.log(countryNames.map(country => country.flags))
->>>>>>> ff34d482a7ed0b676587ca19fe44b5904d467dbb
           return (
             <Activity 
             key={activTurist.activity.id}
             name={activTurist.activity.name}            
-            countryID={countryNames.map(country =><h4>{country.name}</h4>)}
+            countryID={countryNames.map(country => <p key={country.id}>{country.name}</p>)}
             difficulty={activTurist.activity.difficulty}            
             duration={activTurist.activity.duration}            
             season={activTurist.activity.season}            
@@ -269,7 +261,7 @@ activitiesCountry?.map(activTurist => {
         
 
               
-
+          <div className={ style.cardsCountries }>
           {        
           optionCountry?.map( country => (
           <Country
@@ -281,6 +273,7 @@ activitiesCountry?.map(activTurist => {
             />
         ))
        } 
+          </div>
     </div>
   )
 }
