@@ -93,7 +93,7 @@ export const FormActivities = () => {
               duration: '',
               season: '',
               countries: []}),
-              console.log(activityData)
+              
               
           setCountrySelect([...activitiesForm])
           setNameCountry([...activitiesForm])
@@ -162,7 +162,7 @@ export const FormActivities = () => {
           </select>
         <p className={style.error}>{ errors.countries ? errors.countries : null }</p>
 
-          <div>{nameCountry?.map(country => <li key = {country}>{country}</li>)}</div>
+          <div className={style.countriesSelect}>{nameCountry?.map(country => <ul key = {country}>{country}</ul>)}</div>
         </div>
       </div> 
       <button className={style.button} type='submit' disabled={!isFormComplete()}>Cargar Actividad</button> 

@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { Activity } from '../Activity/Activity';
 import style from '../moduleCss/Countries.module.css';
+import { SearchBar } from "../searchBar/SearchBar";
 
  
 
@@ -192,7 +193,7 @@ export const Countries = () => {
 
   return (
     <div>
-      
+      <SearchBar />
 
 
       <button className={ style.button } onClick={ () => handlePagPrev() }>Anterior</button>
@@ -219,7 +220,7 @@ export const Countries = () => {
       </select>
       {/* Ordenar por poblacion */}
       <select className={ style.select } name='population' id='population' onChange = { handleOrderPopulation }>       
-      <option >Población</option>        
+      <option value='smallPopulation'>Población</option>        
         <option value="bigPopulation">Mayor Población</option>
         <option value="smallPopulation">Menor Población</option>       
       </select>

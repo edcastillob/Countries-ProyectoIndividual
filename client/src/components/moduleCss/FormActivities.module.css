@@ -5,6 +5,8 @@
   width: 50%;
   margin: 0 auto;
   margin-top: 45px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 30px;
 }
 
 .label {
@@ -35,14 +37,16 @@
   border-color: #555;
 }
 .button {
-  padding: 10px;
-  background-color: #007bff;
+  padding: 9px 16px;
+  background-color: #fa7878;
   color: #fff;
   border: none;
-  border-radius: 3px;
   cursor: pointer;
+  border-radius: 5px;
 }
-
+.button:hover {
+  background-color: #f75252; 
+}
 .error {
   color: red;
   margin-top: 5px;
@@ -52,6 +56,9 @@
   padding: 8px;
   font-size: 12px;
   border-radius: 5px;
- 
-
+}
+.countriesSelect{
+color: #f75252;
+font-weight: bold;
+font-size: 20px;
 }

@@ -4,7 +4,7 @@
     left: 0;
     right: 0;
     height: 60px; /* Ajusta la altura según tus necesidades */
-    background-color: #f5f5f5;
+    background-color: #f8e9f4;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -29,8 +29,9 @@
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    
   }
   
   .navbar button:hover {
-    background-color: #e5e5e5;
+    background-color: #f75252;
   }

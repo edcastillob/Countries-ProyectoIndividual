@@ -22,7 +22,7 @@
   
   .table th {
     font-weight: bold;
-    background-color: #f2f2f2;
+    background-color: #ff8c8c1f;
     width: 30%;
   }
   
@@ -35,6 +35,6 @@
   }
   .button{
     position: absolute;
-    left: 79%;
+    left: 78.7%;
     
   }

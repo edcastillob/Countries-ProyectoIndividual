@@ -1,0 +1,66 @@
+
+
+  .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url(''); /* Reemplaza con la ruta de la imagen de fondo que deseas usar */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  
+ 
+}
+
+.ladoIzq {
+  flex: 1;
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  
+  border-radius: 10px;
+}
+
+.ladoDer {
+  flex: 1;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  
+}
+
+.bienvenidos {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.subtitulo {
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.button {
+  padding: 9px 16px;
+    background-color: #fa7878;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #f75252; 
+}
+
+.image {
+   max-width: 300px; 
+   height: auto; 
+
+}

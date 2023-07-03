@@ -36,3 +36,10 @@
 
 // export default pagPopulation;
 
+
+
+export const reload = () => {
+   
+        window.location.reload(true);
+    
+}

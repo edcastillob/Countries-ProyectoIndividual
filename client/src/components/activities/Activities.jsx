@@ -3,6 +3,7 @@ import { showActivities, showCountries, getActivitiesCountryAll, deleteActivity 
 // import { Activity } from "../Activity/Activity";
 import { useEffect, useState } from "react";
 import style from '../moduleCss/Activities.module.css';
+import { ActivitiesNotFound } from "./ActivitiesNotFound";
 
 
 export const Activities = () => {
@@ -30,37 +31,15 @@ export const Activities = () => {
       setPostDelete(false)
     }
   }
-  
-   
-//   return (
-//     <div>
-      
-        
 
-//    {
-//   countryActivity?.allActivities?.map((activity) => (
-//     <div key={activity.id}>
-//       <button onClick= { handleDeleteActivity } value={activity.id}>--❌--</button>
-//       <h4>Actividad: {activity.name}</h4>
-//       <div>
-//       {activity.Countries.length > 1 ?  <h4>Paises:</h4> : <h4>Pais:</h4>}
-//         {activity.Countries?.map((country) => (
-//           <p key={country.id}>{country.name}</p>
-//         ))}
-//       </div>
-//       <p>Dificultad: {activity.difficulty}</p>
-//       <p>Duración: {activity.duration} Horas</p>
-//       <p>Temporada: {activity.season}</p>
-//     </div>
-//   ))
-// }       
-//     </div>
-//   );
 
 
 
 return (
   <div className={style.container}>
+    { (countryActivity?.allActivities?.length >0) ?  
+    
+    <div>
     {countryActivity?.allActivities?.map((activity) => (
       <div key={activity.id}>
         <button className={style.button} onClick={handleDeleteActivity} value={activity.id}>--❌--</button>
@@ -94,6 +73,8 @@ return (
         </table>
       </div>
     ))}
+    
+  </div>: <ActivitiesNotFound /> }
   </div>
 );
 

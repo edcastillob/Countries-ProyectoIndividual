@@ -8,6 +8,7 @@ import { FormActivities } from './components/form/FormActivities';
 import { Navbar } from './components/navBar/Navbar';
 import { Home } from './components/home/Home';
 import { Activities } from './components/activities/Activities';
+import {LandingPage} from './components/landing/LandingPage';
 // import { Region } from './components/filter/region/Region';
 
 
@@ -23,6 +24,7 @@ export function App() {
      <Routes>
 
       
+      <Route exact path = '/' element = { <LandingPage /> }/>  
       <Route exact path = '/home' element = { <Home /> }/>  
       <Route exact path = '/countries' element = { <Countries /> }/>  
       <Route exact path = '/detail/:id' element = { <Detail /> }/>  

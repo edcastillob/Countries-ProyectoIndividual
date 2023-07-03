@@ -3,7 +3,7 @@
   align-items: center;
   max-width: 400px;
   margin: 0 auto;
- 
+ margin-top: 35px;
   
 
 }
@@ -28,5 +28,5 @@
 }
 
 .searchButton:hover {
-  background-color: #555;
+     background-color: #f75252; 
 }
