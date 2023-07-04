@@ -1,6 +1,6 @@
-const { DataTypes, DATEONLY } = require('sequelize');
+const { DataTypes } = require('sequelize');
 
-// module.exports = (sequelize) => {
+
 const Country = (sequelize) => {
 
   sequelize.define('Country', {
@@ -49,6 +49,8 @@ const Country = (sequelize) => {
   }, {
      timestamps: false
   });
+  return Country;
 };
 
 module.exports = Country;
+

@@ -1,0 +1,51 @@
+
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 45px;
+  padding: 20px;
+  text-align: center;
+  font-size: 20px;
+  text-align: justify;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  position: relative;
+}
+
+.images {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 70px;
+  height: 70px; /* Asegúrate de que la altura sea igual al ancho para lograr una forma de círculo */
+  margin-top: 60px;
+  border-radius: 50%; /* Agregamos el border-radius para lograr una forma de círculo */
+}
+
+.ed {
+  width: 140px;
+  height: auto;
+  margin-top: 60px;
+  border-radius: 10px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+}
+
+.socialIcons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.socialIcons img {
+  width: 30px;
+  height: 30px;
+  margin: 0 10px;
+}
+
+.container h3,
+.container p {
+  margin-bottom: 20px;
+}
