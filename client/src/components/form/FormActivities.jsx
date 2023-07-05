@@ -66,7 +66,10 @@ export const FormActivities = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    if (!isFormComplete()) {
+      alert("Por favor, complete todos los campos del formulario.");
+      return;
+    }
     dispatch(postActivityData(activityData));
     alert("Actividad creada exitosamente");
     setActivityData({
@@ -81,9 +84,18 @@ export const FormActivities = () => {
   };
 
   const isFormComplete = () => {
-    return Object.values(activityData).every((value) => value !== "");
+    const { name, difficulty, duration, season, countries } = activityData;
+    return (
+      name !== "" &&
+      difficulty !== "" &&
+      duration !== "" &&
+      season !== "" &&
+      countries.length > 0
+    );
   };
-
+ 
+  
+  
   return (
     <form className={style.form} onSubmit={handleSubmit}>
       <label htmlFor="name">Actividad:</label>
@@ -150,7 +162,7 @@ export const FormActivities = () => {
             name="countries"
             id="countries"
             onChange={handleCountrySelect}
-            value=" - Pais - "
+            value=""
           >
             <option value="x">- --- - </option>
             {countriesState?.sort().map((country) => (
@@ -173,7 +185,7 @@ export const FormActivities = () => {
       <button
         className={style.button}
         type="submit"
-        disabled={!isFormComplete()}
+        // disabled={!isFormComplete()}
       >
         Cargar Actividad
       </button>

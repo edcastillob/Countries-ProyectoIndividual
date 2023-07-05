@@ -38,23 +38,30 @@ export const Activities = () => {
       {countryActivity?.allActivities?.length > 0 ? (
         <div>
           {countryActivity?.allActivities?.map((activity) => (
-            <div key={activity.id}>
-              <button
-                className={style.button}
-                onClick={handleDeleteActivity}
-                value={activity.id}
-              >
-                --❌--
-              </button>
+            <div key={activity.id} className={style.activity}>
               <table className={style.table}>
                 <tbody>
+                <tr>
+                    <td colSpan="3" className={style.buttonCell}>
+                      <div className={style.but}>
+                        <button
+                        title="Eliminar Actividad"
+                        className={style.button}
+                        onClick={handleDeleteActivity}
+                        value={activity.id}
+                      >
+                        ❌
+                      </button>
+                        </div>
+                    </td>
+                  </tr>
                   <tr>
                     <th>Actividad</th>
                     <td>{activity.name}</td>
                   </tr>
                   <tr>
                     <th>{activity.Countries.length > 1 ? "Paises" : "Pais"}</th>
-                    <td>
+                    <td colSpan="2">
                       {activity.Countries?.map((country) => (
                         <p key={country.id}>{country.name}</p>
                       ))}
@@ -62,16 +69,16 @@ export const Activities = () => {
                   </tr>
                   <tr>
                     <th>Dificultad</th>
-                    <td>{activity.difficulty}</td>
+                    <td colSpan="2">{activity.difficulty}</td>
                   </tr>
                   <tr>
                     <th>Duración</th>
-                    <td>{activity.duration} Horas</td>
+                    <td colSpan="2">{activity.duration} Horas</td>
                   </tr>
                   <tr>
                     <th>Temporada</th>
-                    <td>{activity.season}</td>
-                  </tr>
+                    <td colSpan="2">{activity.season}</td>
+                  </tr>                  
                 </tbody>
               </table>
             </div>

@@ -1,6 +1,7 @@
 .container {
   margin-top: 30px;
 }
+
 .table {
   width: 70%;
   margin: 0 auto;
@@ -32,7 +33,24 @@
 .table tr:hover {
   background-color: #f9f9f9;
 }
+
+.buttonCell {
+  position: relative;
+  
+}
+
+.but{
+  text-align: right;
+}
 .button {
-  position: absolute;
-  left: 78.7%;
+  padding: 2px 2px;
+  background-color: #ffefef;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #f75252;
 }
