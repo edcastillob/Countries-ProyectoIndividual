@@ -16,7 +16,6 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  errors: [],
   activities: [],
   countries: [],
   currentPage: 0,

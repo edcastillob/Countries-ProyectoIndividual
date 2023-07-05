@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { Activity } from "../Activity/Activity";
+import { Activity } from "../activity/Activity";
 import style from "../moduleCss/Countries.module.css";
 import { SearchBar } from "../searchBar/SearchBar";
 import { Country } from "../country/Country";
