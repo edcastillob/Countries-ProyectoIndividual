@@ -31,7 +31,7 @@ secciones dentro de la aplicación encontrarás:</p>
     <h2><a href="https://frontcountries.onrender.com">Ver SPA</a></h2>
 
  <p>Deploy del back...</p>
-    <h2><a href="https://backendcountries.onrender.com/countries">Backen</a></h2>
+    <h2><a href="https://backendcountries.onrender.com/countries">Backend</a></h2>
 
 <p>Capturas de la app</p>
 
