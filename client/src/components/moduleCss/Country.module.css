@@ -1,47 +1,47 @@
 .countryCard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    /* Agrega más estilos según tus preferencias */
-    margin-top: 20px; /* Agrega el margen superior deseado */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  /* Agrega más estilos según tus preferencias */
+  margin-top: 20px; /* Agrega el margen superior deseado */
 }
 
 .countryCard:hover {
   transform: scale(1.05);
 }
-  .countryFlag {
-    flex: 0 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-height: 250px;
-  }
-  
-  .countryFlag img {
- border-radius: 5px;
- border: black solid 1px;
-    width: 180px; /* Establece el ancho deseado */
+.countryFlag {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-height: 250px;
+}
+
+.countryFlag img {
+  border-radius: 5px;
+  border: black solid 1px;
+  width: 180px; /* Establece el ancho deseado */
   height: 100px; /* Establece la altura deseada */
   object-fit: cover; /* Ajusta el tamaño de la imagen sin perder la relación de aspecto */
-    
-  }
-  
-  .countryDetails {
-    margin-top: 10px;
-    text-align: center;
-  }
-  
-  .countryDetails h2 {
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
-  
-  .countryDetails h3 {
-    font-size: 14px;
-    color: #888;
-  }
+}
+
+.countryDetails {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.countryDetails h2 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.countryDetails h3 {
+  font-size: 14px;
+  color: #888;
+}

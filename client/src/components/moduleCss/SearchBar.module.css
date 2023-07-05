@@ -3,9 +3,7 @@
   align-items: center;
   max-width: 400px;
   margin: 0 auto;
- margin-top: 35px;
-  
-
+  margin-top: 35px;
 }
 
 .searchInput {
@@ -14,7 +12,6 @@
   font-size: 12px;
   border-radius: 5px;
   margin-right: 5px;
-
 }
 
 .searchButton {
@@ -24,9 +21,8 @@
   border: none;
   cursor: pointer;
   border-radius: 5px;
-
 }
 
 .searchButton:hover {
-     background-color: #f75252; 
+  background-color: #f75252;
 }

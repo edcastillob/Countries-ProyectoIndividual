@@ -1,13 +1,9 @@
-import { Countries } from "../countries/Countries"
-
-
+import { Countries } from "../countries/Countries";
 
 export const Home = () => {
   return (
     <div>
-     
-     <Countries /> 
-       
+      <Countries />
     </div>
-  )
-}
+  );
+};

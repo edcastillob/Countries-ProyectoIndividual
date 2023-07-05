@@ -1,37 +1,36 @@
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px; /* Ajusta la altura según tus necesidades */
-    background-color: #f8e9f4;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    z-index: 999; 
-  }
-  
-  .navbar a {
-    text-decoration: none;
-    margin: 0 10px;
-  }
-  
-  .navbar button {
-    /* padding: 8px 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px; /* Ajusta la altura según tus necesidades */
+  background-color: #f8e9f4;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 999;
+}
+
+.navbar a {
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.navbar button {
+  /* padding: 8px 16px;
     background-color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer; */
 
-    padding: 9px 16px;
-    background-color: #fa7878;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    
-  }
-  
-  .navbar button:hover {
-    background-color: #f75252;
-  }
+  padding: 9px 16px;
+  background-color: #fa7878;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.navbar button:hover {
+  background-color: #f75252;
+}

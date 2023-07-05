@@ -22,6 +22,7 @@
     "supertest": "^6.3.3"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.22.5",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^4.0.0",

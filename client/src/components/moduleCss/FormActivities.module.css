@@ -14,8 +14,6 @@
   margin-right: 5px;
 }
 
-
-
 .select {
   padding: 8px 12px;
   border-radius: 4px;
@@ -26,7 +24,7 @@
   font-family: Arial, sans-serif;
   outline: none;
   transition: border-color 0.3s ease;
-  margin-top: 5px;  
+  margin-top: 5px;
   border-radius: 5px;
 }
 .select:hover {
@@ -45,7 +43,7 @@
   border-radius: 5px;
 }
 .button:hover {
-  background-color: #f75252; 
+  background-color: #f75252;
 }
 .error {
   color: red;
@@ -57,8 +55,8 @@
   font-size: 12px;
   border-radius: 5px;
 }
-.countriesSelect{
-color: #f75252;
-font-weight: bold;
-font-size: 20px;
+.countriesSelect {
+  color: #f75252;
+  font-weight: bold;
+  font-size: 20px;
 }
