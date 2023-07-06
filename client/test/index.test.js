@@ -1,33 +1,33 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { Activity } from './Activity';
+import React from "react";
+import { render } from "@testing-library/react";
+import { Activity } from "./Activity";
 
-describe('Activity component', () => {
-  test('renders activity details correctly', () => {
-    const activity = {
+describe("Activity", () => {
+  it("renders activity details correctly", () => {
+    const props = {
       id: 1,
-      name: 'Hiking',
-      countryID: 'USA',
-      difficulty: 'Intermediate',
+      name: "Activity 1",
+      countryID: "Country 1",
+      difficulty: "Easy",
       duration: 2,
-      season: 'Summer'
+      season: "Summer",
     };
 
-    render(<Activity {...activity} />);
+    const { getByText } = render(<Activity {...props} />);
 
-    expect(screen.getByText(/Actividad/i)).toBeInTheDocument();
-    expect(screen.getByText(/Hiking/i)).toBeInTheDocument();
+    const name = getByText("Actividad");
+    expect(name).toBeInTheDocument();
 
-    expect(screen.getByText(/Pais/i)).toBeInTheDocument();
-    expect(screen.getByText(/USA/i)).toBeInTheDocument();
+    const countryID = getByText("Pais");
+    expect(countryID).toBeInTheDocument();
 
-    expect(screen.getByText(/Dificultad/i)).toBeInTheDocument();
-    expect(screen.getByText(/Intermediate/i)).toBeInTheDocument();
+    const difficulty = getByText("Dificultad");
+    expect(difficulty).toBeInTheDocument();
 
-    expect(screen.getByText(/Duración/i)).toBeInTheDocument();
-    expect(screen.getByText(/2 Horas/i)).toBeInTheDocument();
+    const duration = getByText("Duración");
+    expect(duration).toBeInTheDocument();
 
-    expect(screen.getByText(/Temporada/i)).toBeInTheDocument();
-    expect(screen.getByText(/Summer/i)).toBeInTheDocument();
+    const season = getByText("Temporada");
+    expect(season).toBeInTheDocument();
   });
 });

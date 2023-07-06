@@ -36,7 +36,8 @@ describe("Test Rutas Activities", () => {
           season: "Invierno",
           countries: ["AUS"],
         })
-        .expect(200);
+        .expect(200);       
+
     });
 
     it("Debería responder con status: (200) - Ruta todas las actividades mas country", async () => {

@@ -1,6 +1,10 @@
 #root {
+  /* background: url('https://img.freepik.com/vector-premium/plantilla-diseno-suave-suave-abstracto-lineas-onduladas-color-rosa-sobre-fondo-blanco-ilustracion-vectorial_206325-894.jpg?w=900'); */
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;  
 }

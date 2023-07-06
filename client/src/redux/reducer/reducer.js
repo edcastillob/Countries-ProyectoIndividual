@@ -158,6 +158,7 @@ const reducer = (state = initialState, actions) => {
       };
 
     case ORDER_POPULATION:
+      const resetPopulation = [...state.countriesPopulation]
       const bigPopulation = [...state.countriesPopulation].sort((x, y) => y.population - x.population);
       const smallPopulation = [...state.countriesPopulation].sort((x, y) => x.population - y.population);
       if (actions.payload === "bigPopulation") {
@@ -168,8 +169,8 @@ const reducer = (state = initialState, actions) => {
           activitiesCountry: [],
           countriesPagination: [],
           countryPopulation: bigPopulation,
-        };
-      } else if (actions.payload === "smallPopulation") {
+        }
+      }else {
         return {
           ...state,
           countries: [],
@@ -178,13 +179,7 @@ const reducer = (state = initialState, actions) => {
           countriesPagination: [],
           countryPopulation: smallPopulation,
         };
-      } else {
-        return {
-          ...state,
-          countries: [],
-          activitiesCountry: [],
-          countryPopulation: state.countries,
-        };
+     
       }
 
     case ORDER_REGION:

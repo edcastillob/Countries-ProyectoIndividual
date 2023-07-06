@@ -177,12 +177,8 @@ export const Countries = () => {
     <div>
       <SearchBar />
 
-      <button className={style.button} onClick={() => handlePagPrev()}>
-        Anterior
-      </button>
-      <button className={style.button} onClick={() => handlePagNext()}>
-        Siguiente
-      </button>
+      <button className={style.button} onClick={() => handlePagPrev()}>Anterior</button>
+      <button className={style.button} onClick={() => handlePagNext()}>Siguiente</button>
 
       {/* Ordenar ascendente y descendente */}
       <select
